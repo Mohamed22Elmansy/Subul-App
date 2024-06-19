@@ -1,3 +1,5 @@
+import 'package:graduation/presentation/Screens/NavBarScreen.dart';
+
 import '../Screens/Home_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen>
       const Duration(seconds: 10),
       () {
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => HomeScreen()),
+          MaterialPageRoute(builder: (context) => const NavBarScreen()),
         );
       },
     );

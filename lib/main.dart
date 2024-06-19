@@ -3,17 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation/businessLogic/cubit/home_page_cubit.dart';
 import 'package:graduation/businessLogic/cubit/regist_cubit.dart';
 import 'package:graduation/businessLogic/cubit/reset_password_cubit.dart';
-import 'package:graduation/presentation/Screens/Home_Screen.dart';
-
-import 'package:graduation/presentation/Screens/Login_Screen.dart';
+import 'package:graduation/presentation/Screens/Splash_Screen.dart';
 
 import 'package:graduation/presentation/Theme/bloc/theme_bloc.dart';
-import 'package:graduation/presentation/Widgets/NavBar.dart';
 
 import 'businessLogic/cubit/login_page_cubit.dart';
 
 import 'data/server/diohellper.dart';
-import 'presentation/Screens/NavBarScreen.dart';
 
 void main() {
   DioHelper.init();
@@ -41,7 +37,7 @@ class MyApp extends StatelessWidget {
               return MaterialApp(
                 theme: state.themeData,
                 debugShowCheckedModeBanner: false,
-                home: NavBarScreen(),
+                home: const SplashScreen(),
               );
             }
             return const SizedBox();
