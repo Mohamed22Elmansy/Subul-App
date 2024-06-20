@@ -1,6 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation/businessLogic/cubit/cubit/user_profile_cubit.dart';
+import 'package:graduation/data/models/profilemodel.dart';
+import 'package:graduation/data/server/cacheHelper.dart';
+import 'package:graduation/presentation/Screens/NavBarScreen.dart';
 
 import '../../data/server/diohellper.dart';
 import '../../presentation/Screens/Home_Screen.dart';
@@ -56,9 +61,16 @@ class LoginPageCubit extends Cubit<LoginPageState> {
       ).then((value) {
         if (value != null) {
           emit(LoginPagesucsses());
+
+          CacheHelper.cacheUserLogin(true);
+
+          ProfileData userData = ProfileData.fromjson(value.data);
+          CacheHelper.storeUserData(userData).then((value) =>
+              BlocProvider.of<UserProfileCubit>(context).checkUser());
+
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
-              builder: (context) => HomeScreen(),
+              builder: (context) => NavBarScreen(),
             ),
           );
         } else {

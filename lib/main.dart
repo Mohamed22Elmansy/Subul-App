@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation/businessLogic/cubit/cubit/user_profile_cubit.dart';
 import 'package:graduation/businessLogic/cubit/home_page_cubit.dart';
 import 'package:graduation/businessLogic/cubit/regist_cubit.dart';
 import 'package:graduation/businessLogic/cubit/reset_password_cubit.dart';
@@ -28,6 +29,8 @@ class MyApp extends StatelessWidget {
           BlocProvider<LoginPageCubit>(create: (context) => LoginPageCubit()),
           BlocProvider<RegistCubit>(create: (context) => RegistCubit()),
           BlocProvider<HomePageCubit>(create: (context) => HomePageCubit()),
+          BlocProvider<UserProfileCubit>(
+              create: (context) => UserProfileCubit()..checkUser()),
           BlocProvider<ResetPasswordCubit>(
               create: (context) => ResetPasswordCubit()),
         ],

@@ -7,8 +7,8 @@ class DioHelper {
       BaseOptions(
         baseUrl: '',
         receiveDataWhenStatusError: true,
-        connectTimeout: const Duration(minutes: 1),
-        receiveTimeout: const Duration(minutes: 1),
+        connectTimeout: const Duration(minutes: 3),
+        receiveTimeout: const Duration(minutes: 3),
       ),
     );
   }
