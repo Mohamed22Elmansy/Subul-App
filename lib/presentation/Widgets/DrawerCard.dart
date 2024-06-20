@@ -27,7 +27,7 @@ class DrawerCard extends StatelessWidget {
             title,
             style: TextStyle(
               color: const Color.fromRGBO(145, 104, 58, 1),
-              fontSize: width / 5,
+              fontSize: width / 20,
               fontFamily: Theme.of(context).textTheme.displayLarge?.fontFamily,
             ),
           ),

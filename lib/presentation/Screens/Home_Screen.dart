@@ -5,6 +5,8 @@ import 'package:graduation/presentation/Theme/app_theme.dart';
 import 'package:graduation/presentation/Theme/bloc/theme_bloc.dart';
 import 'package:graduation/presentation/Widgets/SearchBar.dart';
 
+import '../Widgets/Drawer.dart';
+
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
   TextEditingController searchController = TextEditingController();
@@ -15,6 +17,7 @@ class HomeScreen extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      drawer: const AppDrawer(),
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         centerTitle: true,
