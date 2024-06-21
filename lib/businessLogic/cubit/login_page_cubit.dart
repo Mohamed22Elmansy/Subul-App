@@ -61,6 +61,7 @@ class LoginPageCubit extends Cubit<LoginPageState> {
       ).then((value) {
         if (value != null) {
           emit(LoginPagesucsses());
+          buttonLable = "تسجيل الدخول";
 
           CacheHelper.cacheUserLogin(true);
 

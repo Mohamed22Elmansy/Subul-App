@@ -8,6 +8,11 @@ sealed class UserProfileState extends Equatable {
 }
 
 final class UserProfileInitial extends UserProfileState {}
+
 final class UserIsLogin extends UserProfileState {}
+
 final class UserNotLogin extends UserProfileState {}
+
 final class UserLogOut extends UserProfileState {}
+
+final class UserVerifyAccount extends UserProfileState {}

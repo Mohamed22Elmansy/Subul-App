@@ -24,6 +24,7 @@ class CacheHelper {
     sharedPreferences.setString(
         "User Second Name", profileData.user!.name.lastName);
     sharedPreferences.setString("User Email", profileData.user!.email);
+    sharedPreferences.setBool("Is Verified", profileData.user!.emailVerification.isVerified);
   }
 
   static Future<Map<String, dynamic>> getUserData() async {
@@ -32,6 +33,7 @@ class CacheHelper {
       "User First Name": sharedPreferences.getString("User First Name"),
       "User Second Name": sharedPreferences.getString("User Second Name"),
       "User Email": sharedPreferences.getString("User Email"),
+      "Is Verified":sharedPreferences.getBool("Is Verified"),
     };
     return userData;
   }

@@ -274,7 +274,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     TextButton(
                       style: ButtonStyle(
-                          padding: MaterialStateProperty.all(
+                          padding: WidgetStateProperty.all(
                               EdgeInsets.symmetric(
                                   horizontal: pagewidth / 30,
                                   vertical: pagewidth / 50))),

@@ -21,6 +21,7 @@ class DioHelper {
       return await dio?.post(url, data: postdata);
     } catch (e) {
       print(e.toString());
+      
     }
   }
 

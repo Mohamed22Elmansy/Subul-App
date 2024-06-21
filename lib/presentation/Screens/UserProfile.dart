@@ -3,9 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation/businessLogic/cubit/cubit/user_profile_cubit.dart';
 import 'package:graduation/data/server/diohellper.dart';
 import 'package:graduation/presentation/Widgets/ProfileTile.dart';
+import 'package:graduation/presentation/Widgets/TextField.dart';
+import 'package:graduation/presentation/Widgets/VerifiyAccount.dart';
 
 class UserProfile extends StatelessWidget {
-  const UserProfile({super.key});
+  UserProfile({super.key});
+  TextEditingController verifiyEmailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -100,6 +103,25 @@ class UserProfile extends StatelessWidget {
               ),
               ProfileTile(
                   icon: Icons.settings, onTap: () {}, title: "الاعدادات"),
+              BlocBuilder<UserProfileCubit, UserProfileState>(
+                builder: (context, state) {
+                  // في مشكله ف التفعيل مبيتصلش بالسيرفر
+                  return BlocProvider.of<UserProfileCubit>(context).isVerified
+                      ? const SizedBox()
+                      : ProfileTile(
+                          icon: Icons.verified_user,
+                          onTap: () {
+                            showDialog(
+                                context: context,
+                                builder: (ctx) => VerifyAccount(
+                                    height: height,
+                                    width: width,
+                                    verifiyEmailController:
+                                        verifiyEmailController));
+                          },
+                          title: "تفعيل الحساب");
+                },
+              ),
               ProfileTile(
                   icon: Icons.wallet, onTap: () {}, title: "معلومات الفواتير"),
               ProfileTile(

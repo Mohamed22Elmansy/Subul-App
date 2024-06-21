@@ -32,33 +32,7 @@ class ProfileData {
       updatedAt: jsonData['user']['updatedAt'],
       v: jsonData['user']['__v'],
     );
-    /* user!.emailVerification.isVerified =
-      jsonData['user']['emailVerification']['isVerified'];
-    user!.emailVerification.verificationDate =
-        jsonData['user']['emailVerification']['verificationDate'];
-    user!.phoneVerification.isVerified =
-        jsonData['user']['phoneVerification']['isVerified'];
-    user!.phoneVerification.isVerified =
-        jsonData['user']['phoneVerification']['verificationDate'];
-    user!.id = jsonData['user']['_id'];
-    user!.name.firstName = jsonData['user']['name']['firstName'];
-    user!.name.lastName = jsonData['user']['name']['lastName'];
-    user!.name.id = jsonData['user']['name']['_id'];
-    user!.contributions = jsonData['user']['contributions'];
-    user!.email = jsonData['user']['email'];
-    user!.isAdmin = jsonData['user']['isAdmin'];
-    user!.pointsOnDonations = jsonData['user']['pointsOnDonations'];
-    user!.totalDonationsAmount = jsonData['user']['totalDonationsAmount'];
-    user!.userLocation.governorate =
-        jsonData['user']['userLocation']['governorate'];
-    user!.gender = jsonData['user']['gender'];
-    user!.phone = jsonData['user']['phone'];
-    user!.verificationCode = jsonData['user']['verificationCode'];
-    user!.isEnabled = jsonData['user']['isEnabled'];
-    user!.transactions = jsonData['user']['transactions'];
-    user!.createdAt = jsonData['user']['createdAt'];
-    user!.updatedAt = jsonData['user']['updatedAt'];
-    user!.v = jsonData['user']['__v'];*/
+   
     message = jsonData['msg'];
   }
 }
