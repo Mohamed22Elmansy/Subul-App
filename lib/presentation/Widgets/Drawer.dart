@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_islamic_icons/flutter_islamic_icons.dart';
+import 'package:graduation/presentation/Screens/AboutUsScreen.dart';
 import 'package:graduation/presentation/Screens/Login_Screen.dart';
 import 'package:graduation/presentation/Screens/NavBarScreen.dart';
 import 'package:graduation/presentation/Widgets/DrawerCard.dart';
@@ -82,8 +83,8 @@ class AppDrawer extends StatelessWidget {
           icon: Icons.info,
           title: 'About Us',
           onTap: () {
-            /*  Navigator.push(context,
-                    MaterialPageRoute(builder: (ctx) => const AbousAus()));*/
+             Navigator.push(context,
+                    MaterialPageRoute(builder: (ctx) => const AboutUsScreen()));
           },
         ),
         DrawerCard(

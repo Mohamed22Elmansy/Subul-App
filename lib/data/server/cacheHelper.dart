@@ -17,14 +17,17 @@ class CacheHelper {
     }
   }
 
-  static Future<void> storeUserData(ProfileData profileData) async {
+  static Future<void> storeUserData(
+      ProfileData profileData, String password) async {
     final sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.setString(
         "User First Name", profileData.user!.name.firstName);
     sharedPreferences.setString(
         "User Second Name", profileData.user!.name.lastName);
     sharedPreferences.setString("User Email", profileData.user!.email);
-    sharedPreferences.setBool("Is Verified", profileData.user!.emailVerification.isVerified);
+    sharedPreferences.setBool(
+        "Is Verified", profileData.user!.emailVerification.isVerified);
+    sharedPreferences.setString("password", password);
   }
 
   static Future<Map<String, dynamic>> getUserData() async {
@@ -33,7 +36,8 @@ class CacheHelper {
       "User First Name": sharedPreferences.getString("User First Name"),
       "User Second Name": sharedPreferences.getString("User Second Name"),
       "User Email": sharedPreferences.getString("User Email"),
-      "Is Verified":sharedPreferences.getBool("Is Verified"),
+      "Is Verified": sharedPreferences.getBool("Is Verified"),
+      "password": sharedPreferences.getString("password"),
     };
     return userData;
   }

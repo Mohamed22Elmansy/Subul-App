@@ -47,6 +47,7 @@ dependencies:
   lottie:
   curved_navigation_bar:
   path:
+  readmore:
 
 
 
@@ -101,6 +102,10 @@ flutter:
       - family: BlakaHollow
         fonts:
           - asset: assets/fonst/BlakaHollow.ttf
+      - family: Rubik
+        fonts:
+          - asset: assets/fonst/Rubik-Italic-VariableFont_wght.ttf
+          - asset: assets/fonst/Rubik-VariableFont_wght.ttf
 
 
   # fonts:

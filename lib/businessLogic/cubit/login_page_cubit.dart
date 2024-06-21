@@ -63,10 +63,12 @@ class LoginPageCubit extends Cubit<LoginPageState> {
           emit(LoginPagesucsses());
           buttonLable = "تسجيل الدخول";
 
-          CacheHelper.cacheUserLogin(true);
 
+          CacheHelper.cacheUserLogin(true);
+          
+     
           ProfileData userData = ProfileData.fromjson(value.data);
-          CacheHelper.storeUserData(userData).then((value) =>
+          CacheHelper.storeUserData(userData , password).then((value) =>
               BlocProvider.of<UserProfileCubit>(context).checkUser());
 
           Navigator.of(context).pushReplacement(

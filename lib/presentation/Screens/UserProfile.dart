@@ -136,7 +136,7 @@ class UserProfile extends StatelessWidget {
               ProfileTile(
                   icon: Icons.logout,
                   onTap: () {
-                    BlocProvider.of<UserProfileCubit>(context).logOut();
+                    BlocProvider.of<UserProfileCubit>(context).logOut(context);
                   },
                   title: "تسجيل الخروج"),
             ],
