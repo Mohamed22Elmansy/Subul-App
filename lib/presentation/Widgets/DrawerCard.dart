@@ -15,18 +15,21 @@ class DrawerCard extends StatelessWidget {
     return Card(
       shadowColor: const Color.fromRGBO(243, 212, 174, 1),
       elevation: 5,
-      color: Colors.white,
+      color: Theme.of(context).scaffoldBackgroundColor,
       child: ListTile(
-          trailing: const Icon(Icons.arrow_back_ios),
+          trailing: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.grey,
+          ),
           leading: Icon(
             icon,
-            color: const Color.fromRGBO(145, 104, 58, 1),
-            size: 20,
+            color: Color.fromARGB(255, 153, 101, 41),
+            size: width / 11,
           ),
           title: Text(
             title,
             style: TextStyle(
-              color: const Color.fromRGBO(145, 104, 58, 1),
+              color: Color.fromARGB(255, 145, 95, 38),
               fontSize: width / 20,
               fontFamily: Theme.of(context).textTheme.displayLarge?.fontFamily,
             ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../Screens/TabraScreen.dart';
+
 class HamalatCard extends StatelessWidget {
   const HamalatCard({super.key});
 
@@ -148,7 +150,11 @@ class HamalatCard extends StatelessWidget {
                           child: const Icon(Icons.shopping_cart_sharp),
                         ),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) => Tabra()),
+                            );
+                          },
                           style: ButtonStyle(
                               backgroundColor: WidgetStateProperty.all(
                                   const Color.fromRGBO(145, 104, 58, 1))),
