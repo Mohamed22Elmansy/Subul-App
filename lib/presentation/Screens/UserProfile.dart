@@ -19,7 +19,7 @@ class UserProfile extends StatelessWidget {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         centerTitle: true,
         title: Text(
-          "Profile",
+          "الصفحه الشخصيه",
           style: TextStyle(
             fontFamily: 'BlakaHollow',
             color: const Color.fromRGBO(145, 104, 58, 1),
@@ -56,7 +56,11 @@ class UserProfile extends StatelessWidget {
                 builder: (context, state) {
                   return Text(
                     BlocProvider.of<UserProfileCubit>(context).userName,
-                    style: Theme.of(context).textTheme.headlineMedium,
+                    style: TextStyle(
+                      color: Theme.of(context).textTheme.displayLarge?.color,
+                      fontFamily: "Cairo",
+                      fontSize: width / 14,
+                    ),
                   );
                 },
               ),
@@ -64,7 +68,11 @@ class UserProfile extends StatelessWidget {
                 builder: (context, state) {
                   return Text(
                     BlocProvider.of<UserProfileCubit>(context).email,
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: TextStyle(
+                      color: Theme.of(context).textTheme.displayLarge?.color,
+                      fontFamily: "Cairo",
+                      fontSize: width / 26,
+                    ),
                   );
                 },
               ),

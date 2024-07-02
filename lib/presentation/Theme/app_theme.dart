@@ -12,8 +12,7 @@ final appThemeData = {
   AppTheme.darkMode: ThemeData(
     scaffoldBackgroundColor: const Color.fromRGBO(33, 34, 45, 1),
     primaryColor: Colors.white,
-    // primaryColorDark: Colors.white,
-    //primaryIconTheme: const IconThemeData(color: Colors.white),
+    
     textTheme: const TextTheme(
       displayLarge: TextStyle(
         fontFamily: 'Tajawal',
@@ -26,7 +25,7 @@ final appThemeData = {
     fontFamily: 'Tajawal',
     iconButtonTheme: IconButtonThemeData(
       style: ButtonStyle(
-        iconColor: MaterialStateProperty.all(Colors.grey),
+        iconColor: WidgetStateProperty.all(Colors.grey),
       ),
     ),
     useMaterial3: true,

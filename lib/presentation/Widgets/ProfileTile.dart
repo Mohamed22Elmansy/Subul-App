@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class ProfileTile extends StatelessWidget {
   ProfileTile({
     super.key,
-    
     required this.icon,
     required this.onTap,
     required this.title,
@@ -12,7 +11,6 @@ class ProfileTile extends StatelessWidget {
   Function() onTap;
   IconData icon;
   String title;
- 
 
   @override
   Widget build(BuildContext context) {
@@ -36,24 +34,22 @@ class ProfileTile extends StatelessWidget {
         title,
         style: TextStyle(
           fontWeight: FontWeight.bold,
-          color: Colors.black,
+          color: Theme.of(context).textTheme.displayLarge?.color,
           fontSize: width / 18,
         ),
       ),
-      trailing: 
-           Container(
-              width: width / 11,
-              height: width / 11,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100),
-                color: const Color.fromRGBO(145, 104, 58, 1),
-              ),
-              child: const Icon(
-                Icons.arrow_forward,
-                color: Colors.white,
-              ),
-            )
-          ,
+      trailing: Container(
+        width: width / 11,
+        height: width / 11,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100),
+          color: const Color.fromRGBO(145, 104, 58, 1),
+        ),
+        child: const Icon(
+          Icons.arrow_forward,
+          color: Colors.white,
+        ),
+      ),
     );
   }
 }

@@ -113,7 +113,7 @@ class LoginScreen extends StatelessWidget {
                         return SizedBox(
                           width: MediaQuery.of(context).size.width - 20,
                           child: RadioListTile(
-                            fillColor: MaterialStateProperty.all(
+                            fillColor: WidgetStateProperty.all(
                               const Color.fromRGBO(145, 104, 58, 1),
                             ),
                             title: Text(
@@ -163,7 +163,7 @@ class LoginScreen extends StatelessWidget {
                               ),
                             ),
                             value: Logintype.charity,
-                            fillColor: MaterialStateProperty.all(
+                            fillColor: WidgetStateProperty.all(
                               const Color.fromRGBO(145, 104, 58, 1),
                             ),
                             groupValue: BlocProvider.of<LoginPageCubit>(context)
@@ -181,7 +181,7 @@ class LoginScreen extends StatelessWidget {
                       children: [
                         TextButton(
                           style: ButtonStyle(
-                              padding: MaterialStateProperty.all(
+                              padding: WidgetStateProperty.all(
                                   EdgeInsets.symmetric(
                                       horizontal: pagewidth / 15,
                                       vertical: pagewidth / 28))),
@@ -214,15 +214,15 @@ class LoginScreen extends StatelessWidget {
                             builder: (context, state) {
                               return ElevatedButton(
                                 style: ButtonStyle(
-                                  shape: MaterialStateProperty.all(
+                                  shape: WidgetStateProperty.all(
                                     RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(25),
                                     ),
                                   ),
-                                  backgroundColor: MaterialStateProperty.all(
+                                  backgroundColor: WidgetStateProperty.all(
                                     const Color.fromRGBO(145, 104, 58, 1),
                                   ),
-                                  padding: MaterialStateProperty.all(
+                                  padding: WidgetStateProperty.all(
                                     EdgeInsets.symmetric(
                                         horizontal: pagewidth / 15,
                                         vertical: pagewidth / 28),

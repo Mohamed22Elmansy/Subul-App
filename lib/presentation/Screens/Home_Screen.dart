@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation/presentation/Theme/app_theme.dart';
 import 'package:graduation/presentation/Theme/bloc/theme_bloc.dart';
+import 'package:graduation/presentation/Widgets/BottomSheetWidget.dart';
 import 'package:graduation/presentation/Widgets/SearchBar.dart';
 
 import '../Widgets/Drawer.dart';
+import 'PayZakaScreen.dart';
+import 'TabraScreen.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -52,7 +55,116 @@ class HomeScreen extends StatelessWidget {
       body: ListView(
         children: [
           ASearchBar(searchController: searchController, width: width),
+          Text(
+            "فرص التبرع",
+            style: TextStyle(
+              color: const Color.fromRGBO(145, 104, 58, 1),
+              fontSize: width / 12,
+              fontFamily: "Cairo",
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(
+            height: height / 70,
+          ),
+          SingleChildScrollView(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => PayElzaka()),
+                    );
+                  },
+                  child: Card(
+                    child: Image.asset(
+                      "assets/images/ZakaImage.png",
+                      fit: BoxFit.cover,
+                      scale: width / 150,
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => Tabra()),
+                    );
+                  },
+                  child: Card(
+                    child: Image.asset(
+                      "assets/images/TabarImage.png",
+                      fit: BoxFit.cover,
+                      scale: width / 150,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SingleChildScrollView(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => Tabra()),
+                    );
+                  },
+                  child: Card(
+                    child: Image.asset(
+                      "assets/images/KafaratImage.png",
+                      fit: BoxFit.cover,
+                      scale: width / 150,
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => Tabra()),
+                    );
+                  },
+                  child: Card(
+                    child: Image.asset(
+                      "assets/images/SadakatImage.png",
+                      fit: BoxFit.cover,
+                      scale: width / 150,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Card(
+            margin: EdgeInsets.only(
+                right: width / 5, left: width / 5, bottom: width / 15),
+            child: Image.asset(
+              "assets/images/TabaraImage.png",
+              fit: BoxFit.cover,
+            ),
+          ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showModalBottomSheet(
+            elevation: 5,
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20))),
+            backgroundColor: const Color.fromRGBO(145, 104, 58, 1),
+            context: context,
+            builder: (ctx) => BottomSheetWidget(),
+          );
+        },
+        backgroundColor: const Color.fromRGBO(145, 104, 58, 1),
+        tooltip: "خدمات",
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ),
     );
   }
