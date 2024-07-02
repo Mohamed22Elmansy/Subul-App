@@ -7,6 +7,7 @@ import 'package:graduation/presentation/Widgets/BottomSheetWidget.dart';
 import 'package:graduation/presentation/Widgets/SearchBar.dart';
 
 import '../Widgets/Drawer.dart';
+import '../Widgets/hamalatCard.dart';
 import 'PayZakaScreen.dart';
 import 'TabraScreen.dart';
 
@@ -55,6 +56,38 @@ class HomeScreen extends StatelessWidget {
       body: ListView(
         children: [
           ASearchBar(searchController: searchController, width: width),
+          Text(
+            "الحملات",
+            style: TextStyle(
+              color: const Color.fromRGBO(145, 104, 58, 1),
+              fontSize: width / 12,
+              fontFamily: "Cairo",
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(
+            height: height / 70,
+          ),
+          const SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: HamalatCard(),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: HamalatCard(),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: HamalatCard(),
+                ),
+              ],
+            ),
+          ),
           Text(
             "فرص التبرع",
             style: TextStyle(
