@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation/businessLogic/cubit/cubit/edit_profile_cubit.dart';
 import 'package:graduation/businessLogic/cubit/cubit/user_profile_cubit.dart';
 import 'package:graduation/data/server/diohellper.dart';
+import 'package:graduation/presentation/Screens/EditProfileScreen.dart';
+import 'package:graduation/presentation/Screens/Login_Screen.dart';
+import 'package:graduation/presentation/Screens/UserInfo.dart';
 import 'package:graduation/presentation/Widgets/ProfileTile.dart';
 import 'package:graduation/presentation/Widgets/TextField.dart';
 import 'package:graduation/presentation/Widgets/VerifiyAccount.dart';
@@ -83,11 +87,22 @@ class UserProfile extends StatelessWidget {
                 width: width / 2.5,
                 child: ElevatedButton(
                   onPressed: () {
-                    /* Navigator.push(context, MaterialPageRoute(
-                      builder: (context) {
-                        return const UpdateProfile();
-                      },
-                    ));*/
+                    if (BlocProvider.of<UserProfileCubit>(context).isLogin ==
+                        true) {
+                      BlocProvider.of<EditProfileCubit>(context)
+                          .SetData(context);
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => EditProfile(),
+                        ),
+                      );
+                    } else {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => LoginScreen(),
+                        ),
+                      );
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                       side: BorderSide.none,
@@ -140,7 +155,16 @@ class UserProfile extends StatelessWidget {
               SizedBox(
                 height: height / 50,
               ),
-              ProfileTile(icon: Icons.info, onTap: () {}, title: "معلومات"),
+              ProfileTile(
+                  icon: Icons.info,
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => UserInfo(),
+                      ),
+                    );
+                  },
+                  title: "معلومات"),
               ProfileTile(
                   icon: Icons.logout,
                   onTap: () {

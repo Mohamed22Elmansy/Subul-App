@@ -13,9 +13,12 @@ part 'user_profile_state.dart';
 
 class UserProfileCubit extends Cubit<UserProfileState> {
   UserProfileCubit() : super(UserProfileInitial());
-  bool? isLogin;
+  bool? isLogin = false;
   bool isVerified = false;
   String userName = "Guest";
+  String phoneNumber = "000000000";
+
+  String city = "Cairo";
   String? password;
   String email = "Guest@Subul.com";
 
@@ -29,17 +32,18 @@ class UserProfileCubit extends Cubit<UserProfileState> {
           "${userData["User First Name"]} ${userData["User Second Name"]}";
       email = userData["User Email"];
       isVerified = userData["Is Verified"];
+      phoneNumber = userData["User Phone Number"];
       password = userData["password"];
       DioHelper.PostData(postdata: {
         "email": email,
         "password": password,
-      }, url: 'https://subul.onrender.com/api/users/auth').then((value) {
-        if (value !=null){
-           CacheHelper.cacheUserLogin(true);
-          
-     
+      }, url: 'https://subul.onrender.com/api/users/auth')
+          .then((value) {
+        if (value != null) {
+          CacheHelper.cacheUserLogin(true);
+
           ProfileData userData = ProfileData.fromjson(value.data);
-          CacheHelper.storeUserData(userData , password!);
+          CacheHelper.storeUserData(userData, password!);
         }
       });
     } else {
@@ -51,7 +55,7 @@ class UserProfileCubit extends Cubit<UserProfileState> {
     }
   }
 
-  void verifyAccount({required String token }) {
+  void verifyAccount({required String token}) {
     try {
       print(token);
       DioHelper.PostData(

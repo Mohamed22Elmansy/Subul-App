@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:graduation/presentation/Screens/AddedCases.dart';
 import 'package:graduation/presentation/Screens/Home_Screen.dart';
 import 'package:graduation/presentation/Screens/UserProfile.dart';
 import 'package:graduation/presentation/Screens/registScreen.dart';
@@ -17,7 +18,7 @@ class HomePageCubit extends Cubit<HomePageState> {
       activePage = UserProfile();
     } else if (index == 2) {
       emit(ThirdPageSelect());
-      activePage = RegistScreen();
+      activePage = AddedCases();
     } else {
       emit(HomePageSelect());
       activePage = HomeScreen();

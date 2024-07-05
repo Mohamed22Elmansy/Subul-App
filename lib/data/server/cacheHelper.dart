@@ -24,6 +24,9 @@ class CacheHelper {
         "User First Name", profileData.user!.name.firstName);
     sharedPreferences.setString(
         "User Second Name", profileData.user!.name.lastName);
+    sharedPreferences.setString(
+        "User Phone Number", profileData.user!.phone);
+    
     sharedPreferences.setString("User Email", profileData.user!.email);
     sharedPreferences.setBool(
         "Is Verified", profileData.user!.emailVerification.isVerified);
@@ -38,6 +41,7 @@ class CacheHelper {
       "User Email": sharedPreferences.getString("User Email"),
       "Is Verified": sharedPreferences.getBool("Is Verified"),
       "password": sharedPreferences.getString("password"),
+      "User Phone Number": sharedPreferences.getString("User Phone Number"),
     };
     return userData;
   }

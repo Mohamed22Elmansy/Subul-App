@@ -189,7 +189,7 @@ class HomeScreen extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(20))),
             backgroundColor: const Color.fromRGBO(145, 104, 58, 1),
             context: context,
-            builder: (ctx) => BottomSheetWidget(),
+            builder: (ctx) =>const BottomSheetWidget(),
           );
         },
         backgroundColor: const Color.fromRGBO(145, 104, 58, 1),
