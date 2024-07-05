@@ -22,7 +22,8 @@ class ProfileData {
       isAdmin: jsonData['user']['isAdmin'],
       pointsOnDonations: jsonData['user']['pointsOnDonations'],
       totalDonationsAmount: jsonData['user']['totalDonationsAmount'],
-      // userLocation: UserLocation(governorate: jsonData['user']['userLocation']['governorate']),
+      userLocation: UserLocation(
+          governorate: jsonData['user']['userLocation']['governorate']),
       gender: jsonData['user']['gender'],
       phone: jsonData['user']['phone'],
       verificationCode: jsonData['user']['verificationCode'],
@@ -32,7 +33,7 @@ class ProfileData {
       updatedAt: jsonData['user']['updatedAt'],
       v: jsonData['user']['__v'],
     );
-   
+
     message = jsonData['msg'];
   }
 }
@@ -47,7 +48,7 @@ class User {
   bool isAdmin;
   int pointsOnDonations;
   int totalDonationsAmount;
-  //UserLocation userLocation;
+  UserLocation userLocation;
   String gender;
   String phone;
   String verificationCode;
@@ -67,7 +68,7 @@ class User {
     required this.isAdmin,
     required this.pointsOnDonations,
     required this.totalDonationsAmount,
-    // required this.userLocation,
+    required this.userLocation,
     required this.gender,
     required this.phone,
     required this.verificationCode,
@@ -100,11 +101,11 @@ class Name {
     required this.id,
   });
 }
-/*
+
 class UserLocation {
   String governorate;
 
   UserLocation({
     required this.governorate,
   });
-}*/
+}

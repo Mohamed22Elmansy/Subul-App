@@ -29,10 +29,11 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     emit(EditProfileLooding());
     try {
       DioHelper.PostData(postdata: {
-        "name[lastName]": "",
-        "name[firstName]": nameController!.text,
+        "name.firstName": "",
+        "name.lastName": nameController!.text,
         "phone": phoneController!.text,
         "email": emailController!.text,
+        "location.governorate":cityController!.text,
       }, url: "https://subul.onrender.com/api/users/profile/edit")
           .then((val) async {
         if (val != null) {

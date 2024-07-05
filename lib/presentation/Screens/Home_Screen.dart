@@ -5,6 +5,7 @@ import 'package:graduation/presentation/Theme/app_theme.dart';
 import 'package:graduation/presentation/Theme/bloc/theme_bloc.dart';
 import 'package:graduation/presentation/Widgets/BottomSheetWidget.dart';
 import 'package:graduation/presentation/Widgets/SearchBar.dart';
+import 'package:graduation/presentation/Widgets/TabraHalatCard.dart';
 
 import '../Widgets/Drawer.dart';
 import '../Widgets/hamalatCard.dart';
@@ -56,6 +57,38 @@ class HomeScreen extends StatelessWidget {
       body: ListView(
         children: [
           ASearchBar(searchController: searchController, width: width),
+          Text(
+            "الحالات السريعه",
+            style: TextStyle(
+              color: const Color.fromRGBO(145, 104, 58, 1),
+              fontSize: width / 12,
+              fontFamily: "Cairo",
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(
+            height: height / 70,
+          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TabraHalatCard(),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TabraHalatCard(),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TabraHalatCard(),
+                ),
+              ],
+            ),
+          ),
           Text(
             "الحملات",
             style: TextStyle(
@@ -189,7 +222,7 @@ class HomeScreen extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(20))),
             backgroundColor: const Color.fromRGBO(145, 104, 58, 1),
             context: context,
-            builder: (ctx) =>const BottomSheetWidget(),
+            builder: (ctx) => const BottomSheetWidget(),
           );
         },
         backgroundColor: const Color.fromRGBO(145, 104, 58, 1),

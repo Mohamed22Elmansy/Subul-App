@@ -31,6 +31,7 @@ class UserProfileCubit extends Cubit<UserProfileState> {
       userName =
           "${userData["User First Name"]} ${userData["User Second Name"]}";
       email = userData["User Email"];
+      city = userData["User Location"];
       isVerified = userData["Is Verified"];
       phoneNumber = userData["User Phone Number"];
       password = userData["password"];
@@ -48,6 +49,8 @@ class UserProfileCubit extends Cubit<UserProfileState> {
       });
     } else {
       userName = "Guest";
+      city = "UnKnown";
+      phoneNumber = "00000000";
       password = "";
       email = "Guest@Subul.com";
       isVerified = false;
