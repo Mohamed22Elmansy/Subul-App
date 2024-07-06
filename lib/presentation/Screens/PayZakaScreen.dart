@@ -68,6 +68,12 @@ class PayElzaka extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 12.0, vertical: 15.0),
                       child: TextFormField(
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "هذا الحقل مطلوب";
+                          }
+                          return null;
+                        },
                         keyboardType: TextInputType.number,
                         style: TextStyle(color: Theme.of(context).primaryColor),
                         decoration: InputDecoration(
@@ -121,7 +127,7 @@ class PayElzaka extends StatelessWidget {
                       suffixIcon: null,
                       validatorfun: (value) {
                         if (value!.isEmpty) {
-                          return "بريدك غير صالح  ";
+                          return;
                         }
                         return null;
                       },
@@ -154,7 +160,7 @@ class PayElzaka extends StatelessWidget {
                       suffixIcon: null,
                       validatorfun: (value) {
                         if (value!.isEmpty) {
-                          return "بريدك غير صالح  ";
+                          return "هذا الحقل مطلوب";
                         }
                         return null;
                       },
@@ -171,7 +177,7 @@ class PayElzaka extends StatelessWidget {
                       suffixIcon: null,
                       validatorfun: (value) {
                         if (value!.isEmpty) {
-                          return "بريدك غير صالح  ";
+                          return "هذا الحقل مطلوب";
                         }
                         return null;
                       },
@@ -188,7 +194,7 @@ class PayElzaka extends StatelessWidget {
                       suffixIcon: null,
                       validatorfun: (value) {
                         if (value!.isEmpty) {
-                          return "بريدك غير صالح  ";
+                          return "هذا الحقل مطلوب";
                         }
                         return null;
                       },
@@ -205,7 +211,7 @@ class PayElzaka extends StatelessWidget {
                       suffixIcon: null,
                       validatorfun: (value) {
                         if (value!.isEmpty) {
-                          return "بريدك غير صالح  ";
+                          return "هذا الحقل مطلوب";
                         }
                         return null;
                       },
@@ -214,7 +220,9 @@ class PayElzaka extends StatelessWidget {
                     ),
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {}
+                    },
                     style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all(
                             const Color.fromRGBO(145, 104, 58, 1))),

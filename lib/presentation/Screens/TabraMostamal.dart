@@ -73,7 +73,7 @@ class Mostamal extends StatelessWidget {
                       suffixIcon: null,
                       validatorfun: (value) {
                         if (value!.isEmpty) {
-                          return "بريدك غير صالح  ";
+                          return "هذا الحقل مطلوب";
                         }
                         return null;
                       },
@@ -90,7 +90,7 @@ class Mostamal extends StatelessWidget {
                       suffixIcon: null,
                       validatorfun: (value) {
                         if (value!.isEmpty) {
-                          return "بريدك غير صالح  ";
+                          return "هذا الحقل مطلوب";
                         }
                         return null;
                       },
@@ -107,7 +107,7 @@ class Mostamal extends StatelessWidget {
                       suffixIcon: null,
                       validatorfun: (value) {
                         if (value!.isEmpty) {
-                          return;
+                          return "هذا الحقل مطلوب";
                         }
                         return null;
                       },
@@ -124,7 +124,7 @@ class Mostamal extends StatelessWidget {
                       suffixIcon: null,
                       validatorfun: (value) {
                         if (value!.isEmpty) {
-                          return;
+                          return "هذا الحقل مطلوب";
                         }
                         return null;
                       },
@@ -179,7 +179,9 @@ class Mostamal extends StatelessWidget {
                     height: height / 70,
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      if(formKey.currentState!.validate()){}
+                    },
                     style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all(
                             const Color.fromRGBO(145, 104, 58, 1))),

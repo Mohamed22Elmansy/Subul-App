@@ -28,8 +28,9 @@ class TabraHalatCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(25),
                 child: Image.asset(
-                  "assets/images/children.png",
+                  "assets/images/ملابس.jpg",
                   fit: BoxFit.fill,
+                  height: height / 9,
                 ),
               ),
             ),
@@ -47,7 +48,7 @@ class TabraHalatCard extends StatelessWidget {
               maxLines: 3,
               softWrap: true,
               overflow: TextOverflow.ellipsis,
-              "وفرلهم احتياجهم من الطعام لانهم بحاله صعبه وتحتاج الي مساعدتك",
+              "وفرلهم احتياجهم من الملابس لانهم بحاله صعبه وتحتاج الي مساعدتك",
               style: TextStyle(
                 color: Colors.black,
                 fontSize: width / 30,

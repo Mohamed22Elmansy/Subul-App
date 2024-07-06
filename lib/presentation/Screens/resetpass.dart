@@ -41,15 +41,15 @@ class resetPasswordPage extends StatelessWidget {
                   }
                 },
                 style: ButtonStyle(
-                  shape: MaterialStateProperty.all(
+                  shape: WidgetStateProperty.all(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(25),
                     ),
                   ),
-                  backgroundColor: MaterialStateProperty.all(
+                  backgroundColor: WidgetStateProperty.all(
                     const Color.fromRGBO(145, 104, 58, 1),
                   ),
-                  padding: MaterialStateProperty.all(
+                  padding: WidgetStateProperty.all(
                     EdgeInsets.symmetric(
                         horizontal: pagewidth / 15, vertical: pagewidth / 28),
                   ),

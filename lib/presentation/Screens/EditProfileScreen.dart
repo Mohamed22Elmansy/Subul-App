@@ -30,6 +30,7 @@ class EditProfile extends StatelessWidget {
       body: ListView(
         children: [
           Form(
+            key: formKey,
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -53,7 +54,7 @@ class EditProfile extends StatelessWidget {
                       suffixIcon: null,
                       validatorfun: (value) {
                         if (value!.isEmpty) {
-                          return;
+                          return "هذا الحقل مطلوب";
                         }
                         return null;
                       },
@@ -81,7 +82,7 @@ class EditProfile extends StatelessWidget {
                       suffixIcon: null,
                       validatorfun: (value) {
                         if (value!.isEmpty) {
-                          return;
+                          return "هذا الحقل مطلوب";
                         }
                         return null;
                       },
@@ -109,7 +110,7 @@ class EditProfile extends StatelessWidget {
                       suffixIcon: null,
                       validatorfun: (value) {
                         if (value!.isEmpty) {
-                          return;
+                          return "هذا الحقل مطلوب";
                         }
                         return null;
                       },
@@ -137,7 +138,7 @@ class EditProfile extends StatelessWidget {
                       suffixIcon: null,
                       validatorfun: (value) {
                         if (value!.isEmpty) {
-                          return;
+                          return "هذا الحقل مطلوب";
                         }
                         return null;
                       },
@@ -151,8 +152,10 @@ class EditProfile extends StatelessWidget {
                         width: width / 2.5,
                         child: ElevatedButton(
                           onPressed: () {
-                            BlocProvider.of<EditProfileCubit>(context)
-                                .EditProfile();
+                            if (formKey.currentState!.validate()) {
+                              BlocProvider.of<EditProfileCubit>(context)
+                                  .EditProfile();
+                            }
                           },
                           style: ElevatedButton.styleFrom(
                               side: BorderSide.none,

@@ -7,6 +7,7 @@ import 'package:graduation/businessLogic/cubit/cubit/user_profile_cubit.dart';
 import 'package:graduation/businessLogic/cubit/home_page_cubit.dart';
 import 'package:graduation/businessLogic/cubit/regist_cubit.dart';
 import 'package:graduation/businessLogic/cubit/reset_password_cubit.dart';
+import 'package:graduation/presentation/Screens/PayScreen.dart';
 import 'package:graduation/presentation/Screens/Splash_Screen.dart';
 
 import 'package:graduation/presentation/Theme/bloc/theme_bloc.dart';
@@ -33,7 +34,8 @@ class MyApp extends StatelessWidget {
           BlocProvider<RegistCubit>(create: (context) => RegistCubit()),
           BlocProvider<HomePageCubit>(create: (context) => HomePageCubit()),
           BlocProvider<PickImageCubit>(create: (context) => PickImageCubit()),
-          BlocProvider<EditProfileCubit>(create: (context) => EditProfileCubit()),
+          BlocProvider<EditProfileCubit>(
+              create: (context) => EditProfileCubit()),
           BlocProvider<TabraCubit>(create: (context) => TabraCubit()),
           BlocProvider<UserProfileCubit>(
               create: (context) => UserProfileCubit()..checkUser()),

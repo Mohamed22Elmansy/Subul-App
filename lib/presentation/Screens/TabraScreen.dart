@@ -73,7 +73,7 @@ class Tabra extends StatelessWidget {
                       suffixIcon: null,
                       validatorfun: (value) {
                         if (value!.isEmpty) {
-                          return "بريدك غير صالح  ";
+                          return "هذا الحقل مطلوب";
                         }
                         return null;
                       },
@@ -90,7 +90,7 @@ class Tabra extends StatelessWidget {
                       suffixIcon: null,
                       validatorfun: (value) {
                         if (value!.isEmpty) {
-                          return "بريدك غير صالح  ";
+                          return "هذا الحقل مطلوب";
                         }
                         return null;
                       },
@@ -107,7 +107,7 @@ class Tabra extends StatelessWidget {
                       suffixIcon: null,
                       validatorfun: (value) {
                         if (value!.isEmpty) {
-                          return "بريدك غير صالح  ";
+                          return "هذا الحقل مطلوب";
                         }
                         return null;
                       },
@@ -124,7 +124,7 @@ class Tabra extends StatelessWidget {
                       suffixIcon: null,
                       validatorfun: (value) {
                         if (value!.isEmpty) {
-                          return "بريدك غير صالح  ";
+                          return "هذا الحقل مطلوب";
                         }
                         return null;
                       },
@@ -141,7 +141,7 @@ class Tabra extends StatelessWidget {
                       suffixIcon: null,
                       validatorfun: (value) {
                         if (value!.isEmpty) {
-                          return "بريدك غير صالح  ";
+                          return "هذا الحقل مطلوب";
                         }
                         return null;
                       },
@@ -168,7 +168,9 @@ class Tabra extends StatelessWidget {
                     },
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      if(formKey.currentState!.validate()){}
+                    },
                     style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all(
                             const Color.fromRGBO(145, 104, 58, 1))),
