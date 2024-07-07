@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:graduation/data/models/profilemodel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -17,6 +19,34 @@ class CacheHelper {
     }
   }
 
+  static Future<void> BookCase(
+      List<Map<String, dynamic>> data, int sallary) async {
+    final sharedPreferences = await SharedPreferences.getInstance();
+    String encodedData = jsonEncode(data);
+    await sharedPreferences.setString("BoohedData", encodedData);
+    await sharedPreferences.setInt("Sallary", sallary);
+  }
+
+  static Future<List<Map<String, dynamic>>> GetBookedCase() async {
+    final sharedPreferences = await SharedPreferences.getInstance();
+    String? encodedData = sharedPreferences.getString('BoohedData');
+    if (encodedData != null) {
+      List<Map<String, dynamic>> data =
+          List<Map<String, dynamic>>.from(jsonDecode(encodedData));
+      return data;
+    }
+    return [];
+  }
+
+  static Future<int> GetTotalSallary() async {
+    final sharedPreferences = await SharedPreferences.getInstance();
+    int? sallary = sharedPreferences.getInt("Sallary");
+    if (sallary != null) {
+      return sallary;
+    }
+    return 0;
+  }
+
   static Future<void> storeUserData(
       ProfileData profileData, String password) async {
     final sharedPreferences = await SharedPreferences.getInstance();
@@ -24,11 +54,10 @@ class CacheHelper {
         "User First Name", profileData.user!.name.firstName);
     sharedPreferences.setString(
         "User Second Name", profileData.user!.name.lastName);
+    sharedPreferences.setString("User Phone Number", profileData.user!.phone);
     sharedPreferences.setString(
-        "User Phone Number", profileData.user!.phone);
-        sharedPreferences.setString(
         "User Location", profileData.user!.userLocation.governorate);
-    
+
     sharedPreferences.setString("User Email", profileData.user!.email);
     sharedPreferences.setBool(
         "Is Verified", profileData.user!.emailVerification.isVerified);

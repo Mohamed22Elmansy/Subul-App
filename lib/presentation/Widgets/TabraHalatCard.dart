@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation/businessLogic/cubit/cubit/cubit/booked_cases_cubit.dart';
+import 'package:graduation/data/server/cacheHelper.dart';
 
 import '../Screens/TabraMostamal.dart';
 import '../Screens/TabraScreen.dart';
 
 class TabraHalatCard extends StatelessWidget {
-  const TabraHalatCard({super.key});
+   TabraHalatCard({super.key , required this.bookfun});
+  Function()? bookfun ;
 
   @override
   Widget build(BuildContext context) {
@@ -132,7 +136,7 @@ class TabraHalatCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed:bookfun,
                   style: ButtonStyle(
                       backgroundColor: WidgetStateProperty.all(
                           const Color.fromARGB(255, 244, 243, 243))),

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation/businessLogic/cubit/cubit/cubit/booked_cases_cubit.dart';
+import 'package:graduation/presentation/Widgets/bookedCase.dart';
 
 class AddedCases extends StatelessWidget {
   const AddedCases({super.key});
@@ -22,17 +25,20 @@ class AddedCases extends StatelessWidget {
         ),
       ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      body: Center(
-        child: Text(
-          "لا توجد حالات مضافه",
-          style: TextStyle(
-            fontFamily: Theme.of(context).textTheme.displayLarge?.fontFamily,
-            color: Theme.of(context).textTheme.displayLarge?.color,
-            fontSize: width / 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
+      body: BlocProvider.of<BookedCasesCubit>(context).bookedCase.isEmpty
+          ? Center(
+              child: Text(
+                "لا توجد حالات مضافه",
+                style: TextStyle(
+                  fontFamily:
+                      Theme.of(context).textTheme.displayLarge?.fontFamily,
+                  color: Theme.of(context).textTheme.displayLarge?.color,
+                  fontSize: width / 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            )
+          : BookedCase(),
     );
   }
 }

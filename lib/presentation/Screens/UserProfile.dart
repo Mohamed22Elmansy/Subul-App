@@ -47,7 +47,7 @@ class UserProfile extends StatelessWidget {
                   borderRadius: BorderRadius.circular(150),
                   child: const Image(
                     image: AssetImage(
-                      'assets/images/sopol.jpg',
+                      'assets/images/person.jpg',
                     ),
                     fit: BoxFit.cover,
                   ),

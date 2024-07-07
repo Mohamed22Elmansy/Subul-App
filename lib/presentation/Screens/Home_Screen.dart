@@ -1,6 +1,7 @@
 import 'package:anim_search_bar/anim_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation/businessLogic/cubit/cubit/cubit/booked_cases_cubit.dart';
 import 'package:graduation/presentation/Theme/app_theme.dart';
 import 'package:graduation/presentation/Theme/bloc/theme_bloc.dart';
 import 'package:graduation/presentation/Widgets/BottomSheetWidget.dart';
@@ -76,15 +77,30 @@ class HomeScreen extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: TabraHalatCard(),
+                  child: TabraHalatCard(
+                    bookfun: () {
+                      BlocProvider.of<BookedCasesCubit>(context)
+                          .addCase(title: "ملابس مستعمله", sallary: 1500);
+                    },
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: TabraHalatCard(),
+                  child: TabraHalatCard(
+                    bookfun: () {
+                      BlocProvider.of<BookedCasesCubit>(context)
+                          .addCase(title: "بوتاجازات مستعمله", sallary: 2000);
+                    },
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: TabraHalatCard(),
+                  child: TabraHalatCard(
+                    bookfun: () {
+                      BlocProvider.of<BookedCasesCubit>(context)
+                          .addCase(title: "ثلاجات مستعمله", sallary: 3500);
+                    },
+                  ),
                 ),
               ],
             ),
@@ -102,21 +118,36 @@ class HomeScreen extends StatelessWidget {
           SizedBox(
             height: height / 70,
           ),
-          const SingleChildScrollView(
+          SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: HamalatCard(),
+                  child: HamalatCard(
+                    bookfun: () {
+                      BlocProvider.of<BookedCasesCubit>(context)
+                          .addCase(title: "غذاء للجميع", sallary: 1500);
+                    },
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: HamalatCard(),
+                  child: HamalatCard(
+                    bookfun: () {
+                      BlocProvider.of<BookedCasesCubit>(context)
+                          .addCase(title: "غذاء للجميع", sallary: 3500);
+                    },
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: HamalatCard(),
+                  child: HamalatCard(
+                    bookfun: () {
+                      BlocProvider.of<BookedCasesCubit>(context)
+                          .addCase(title: "غذاء للجميع", sallary: 5000);
+                    },
+                  ),
                 ),
               ],
             ),

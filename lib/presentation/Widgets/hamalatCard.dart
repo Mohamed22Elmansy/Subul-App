@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import '../Screens/TabraScreen.dart';
 
 class HamalatCard extends StatelessWidget {
-  const HamalatCard({super.key});
+   HamalatCard({super.key ,required this.bookfun});
+  Function()? bookfun ;
 
   @override
   Widget build(BuildContext context) {
@@ -155,7 +156,7 @@ class HamalatCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: bookfun,
                             style: ButtonStyle(
                                 backgroundColor: WidgetStateProperty.all(
                                     const Color.fromARGB(255, 244, 243, 243))),

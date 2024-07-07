@@ -49,6 +49,12 @@ dependencies:
   path:
   readmore:
   intl:
+  flutter_launcher_icons:
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/سبـل.png"  
   
 
 

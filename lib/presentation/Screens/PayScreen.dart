@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation/presentation/Widgets/TextField.dart';
+
+import '../../businessLogic/cubit/cubit/cubit/booked_cases_cubit.dart';
 
 class PayScreen extends StatelessWidget {
   PayScreen({super.key});
@@ -154,6 +157,45 @@ class PayScreen extends StatelessWidget {
                   obscureText: false,
                   keyboardType: TextInputType.datetime,
                 ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  BlocBuilder<BookedCasesCubit, BookedCasesState>(
+                    builder: (context, state) {
+                      return Text(
+                        BlocProvider.of<BookedCasesCubit>(context)
+                            .totalSallary
+                            .toString(),
+                        style: TextStyle(
+                          color:
+                              Theme.of(context).textTheme.displayLarge?.color,
+                          fontSize: width / 16,
+                          fontFamily: "Cairo",
+                          fontWeight: FontWeight.bold,
+                        ),
+                      );
+                    },
+                  ),
+                  SizedBox(
+                    width: width / 30,
+                  ),
+                  Text(
+                    ": المبلغ ",
+                    style: TextStyle(
+                      color: const Color.fromRGBO(145, 104, 58, 1),
+                      fontSize: width / 16,
+                      fontFamily: "Cairo",
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(
+                    width: width / 30,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: height / 60,
               ),
               ElevatedButton(
                 onPressed: () {
