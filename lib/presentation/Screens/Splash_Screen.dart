@@ -1,6 +1,5 @@
 import 'package:graduation/presentation/Screens/NavBarScreen.dart';
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -18,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen>
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     super.initState();
     Future.delayed(
-      const Duration(seconds: 7),
+      const Duration(seconds: 3),
       () {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => const NavBarScreen()),
