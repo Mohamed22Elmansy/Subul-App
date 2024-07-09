@@ -1,11 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:graduation/businessLogic/cubit/cubit/tabra_cubit.dart';
 import 'package:graduation/presentation/Widgets/Dialog.dart';
 import '../../data/server/diohellper.dart';
 import '../../presentation/Screens/Home_Screen.dart';
 part 'regist_state.dart';
-
 
 enum Gender { male, female }
 
@@ -60,6 +60,7 @@ class RegistCubit extends Cubit<RegistState> {
             ),
           );
         } else {
+          
           buttonLable = "إنشاء حساب";
           emit(RegistFailuer());
           showDialog(
@@ -67,7 +68,12 @@ class RegistCubit extends Cubit<RegistState> {
               builder: (ctx) =>
                   ShowMyDialog(contentText: contantLable, fontSize: fontSize));
         }
-      });
+      }).onError(
+        (error, stackTrace) {
+          print(error);
+          print(stackTrace.toString());
+        },
+      );
     } catch (e) {
       return;
     }

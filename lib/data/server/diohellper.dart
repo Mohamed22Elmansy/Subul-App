@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:dio/dio.dart';
 
 class DioHelper {
@@ -19,9 +21,14 @@ class DioHelper {
   }) async {
     try {
       return await dio?.post(url, data: postdata);
-    } catch (e) {
-      print(e.toString());
-      
+    } on DioException catch (e) {
+      String errorMessage = 'Unknown error';
+      if (e.response != null) {
+        errorMessage = 'Error: ${e.response!.statusCode} ${e.response!.data}';
+      } else {
+        errorMessage = 'Error: ${e.message}';
+      }
+      print(errorMessage);
     }
   }
 

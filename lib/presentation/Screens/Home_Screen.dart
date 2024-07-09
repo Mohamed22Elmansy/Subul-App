@@ -1,4 +1,4 @@
-import 'package:anim_search_bar/anim_search_bar.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation/businessLogic/cubit/cubit/cubit/booked_cases_cubit.dart';
@@ -7,7 +7,6 @@ import 'package:graduation/presentation/Theme/bloc/theme_bloc.dart';
 import 'package:graduation/presentation/Widgets/BottomSheetWidget.dart';
 import 'package:graduation/presentation/Widgets/SearchBar.dart';
 import 'package:graduation/presentation/Widgets/TabraHalatCard.dart';
-
 import '../Widgets/Drawer.dart';
 import '../Widgets/hamalatCard.dart';
 import 'PayZakaScreen.dart';
