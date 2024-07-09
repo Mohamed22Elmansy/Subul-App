@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../Widgets/TextField.dart';
 
 class AddPatient extends StatelessWidget {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:graduation/presentation/Widgets/CircleCard.dart';
-import 'package:graduation/presentation/Widgets/ServiceCard.dart';
-import 'package:graduation/presentation/Widgets/WhoWeCard.dart';
-import 'package:readmore/readmore.dart';
+import '../../presentation/Widgets/CircleCard.dart';
+import '../../presentation/Widgets/ServiceCard.dart';
+import '../../presentation/Widgets/WhoWeCard.dart';
+
 
 class AboutUsScreen extends StatelessWidget {
   const AboutUsScreen({super.key});

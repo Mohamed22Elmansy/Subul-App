@@ -1,14 +1,13 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation/businessLogic/cubit/cubit/user_profile_cubit.dart';
 import 'package:graduation/data/models/profilemodel.dart';
 import 'package:graduation/data/server/cacheHelper.dart';
 import 'package:graduation/presentation/Screens/NavBarScreen.dart';
 
 import '../../data/server/diohellper.dart';
-import '../../presentation/Screens/Home_Screen.dart';
+
 import '../../presentation/Widgets/Dialog.dart';
 
 part 'login_page_state.dart';

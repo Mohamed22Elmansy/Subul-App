@@ -8,13 +8,9 @@ import 'package:graduation/businessLogic/cubit/cubit/user_profile_cubit.dart';
 import 'package:graduation/businessLogic/cubit/home_page_cubit.dart';
 import 'package:graduation/businessLogic/cubit/regist_cubit.dart';
 import 'package:graduation/businessLogic/cubit/reset_password_cubit.dart';
-import 'package:graduation/presentation/Screens/PayScreen.dart';
 import 'package:graduation/presentation/Screens/Splash_Screen.dart';
-
 import 'package:graduation/presentation/Theme/bloc/theme_bloc.dart';
-
 import 'businessLogic/cubit/login_page_cubit.dart';
-
 import 'data/server/diohellper.dart';
 
 void main() {

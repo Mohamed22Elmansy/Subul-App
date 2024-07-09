@@ -1,12 +1,11 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation/presentation/Widgets/Dialog.dart';
-
 import '../../data/server/diohellper.dart';
 import '../../presentation/Screens/Home_Screen.dart';
-
 part 'regist_state.dart';
+
 
 enum Gender { male, female }
 
@@ -50,7 +49,7 @@ class RegistCubit extends Cubit<RegistState> {
           "password": password,
           "phone": phone,
           "gender": gender,
-          "location.governorate": "Cairo"
+          "userLocation.governorate": "Cairo"
         },
       ).then((value) {
         if (value != null) {
