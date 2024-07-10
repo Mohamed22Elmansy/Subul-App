@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation/businessLogic/cubit/cubit/cubit/booked_cases_cubit.dart';
 import 'package:graduation/businessLogic/cubit/cubit/edit_profile_cubit.dart';
 import 'package:graduation/businessLogic/cubit/cubit/pick_image_cubit.dart';
+import 'package:graduation/businessLogic/cubit/cubit/registcharity_cubit.dart';
 import 'package:graduation/businessLogic/cubit/cubit/tabra_cubit.dart';
 import 'package:graduation/businessLogic/cubit/cubit/user_profile_cubit.dart';
 import 'package:graduation/businessLogic/cubit/home_page_cubit.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
           BlocProvider<RegistCubit>(create: (context) => RegistCubit()),
           BlocProvider<HomePageCubit>(create: (context) => HomePageCubit()),
           BlocProvider<PickImageCubit>(create: (context) => PickImageCubit()),
+          BlocProvider<RegistcharityCubit>(create: (context) => RegistcharityCubit()),
           BlocProvider<EditProfileCubit>(
               create: (context) => EditProfileCubit()),
           BlocProvider<TabraCubit>(create: (context) => TabraCubit()),
@@ -47,7 +49,7 @@ class MyApp extends StatelessWidget {
               return MaterialApp(
                 theme: state.themeData,
                 debugShowCheckedModeBanner: false,
-                home: const SplashScreen(),
+                home:  const SplashScreen(),
               );
             }
             return const SizedBox();

@@ -70,6 +70,6 @@ class PickImageDialog extends StatelessWidget {
         ),
       ),
     );
-    ;
+   
   }
 }

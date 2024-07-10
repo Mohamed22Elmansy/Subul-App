@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation/businessLogic/cubit/login_page_cubit.dart';
 import 'package:graduation/businessLogic/cubit/reset_password_cubit.dart';
+import 'package:graduation/presentation/Screens/RegistCharity.dart';
 import 'package:graduation/presentation/Screens/registScreen.dart';
 import 'package:graduation/presentation/Widgets/Dialog.dart';
 import 'package:graduation/presentation/Widgets/TextField.dart';
@@ -199,11 +200,78 @@ class LoginScreen extends StatelessWidget {
                             ),
                           ),
                           onPressed: () {
-                            Navigator.of(context).push(
+                            showDialog(context: context, builder: (ctx)=>AlertDialog(
+      icon: const Icon(Icons.app_registration),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      content: SizedBox(
+        height: pageheight / 4,
+        child: Column(
+          children: [
+            Text(
+              "انشاء حساب",
+              style: TextStyle(
+                color: const Color.fromRGBO(145, 104, 58, 1),
+                fontSize: pagewidth / 18,
+                fontFamily: "Cairo",
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: pageheight / 70,
+            ),
+            ElevatedButton(
+              onPressed: (){
+                Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) => RegistScreen(),
                               ),
                             );
+              } , 
+             
+              style: ButtonStyle(
+                  backgroundColor: WidgetStateProperty.all(
+                      const Color.fromRGBO(145, 104, 58, 1))),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Text(
+                  "مستخدم",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: pagewidth / 19,
+                      fontFamily: "Cairo"),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: pageheight / 70,
+            ),
+            ElevatedButton(
+              onPressed: (){Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => RegistCharity(),
+                              ),
+                            );}, 
+             
+              style: ButtonStyle(
+                  backgroundColor: WidgetStateProperty.all(
+                      const Color.fromRGBO(145, 104, 58, 1))),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Text(
+                  "جمعيه",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: pagewidth / 19,
+                      fontFamily: "Cairo"),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    ));
+                            
                           },
                         ),
                         Builder(builder: (ctx) {

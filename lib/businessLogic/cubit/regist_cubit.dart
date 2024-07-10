@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation/businessLogic/cubit/cubit/tabra_cubit.dart';
+import 'package:graduation/presentation/Screens/NavBarScreen.dart';
 import 'package:graduation/presentation/Widgets/Dialog.dart';
 import '../../data/server/diohellper.dart';
 import '../../presentation/Screens/Home_Screen.dart';
@@ -43,20 +44,20 @@ class RegistCubit extends Cubit<RegistState> {
       DioHelper.PostData(
         url: 'https://subul.onrender.com/api/users',
         postdata: {
-          "name.firstName": firstName,
-          "name.lastName": lastName,
+          "name": { "firstName":firstName , "lastName": lastName,},
+          
           "email": email,
           "password": password,
           "phone": phone,
           "gender": gender,
-          "userLocation.governorate": "Cairo"
+          "userLocation": {"governorate":"Cairo"}
         },
       ).then((value) {
         if (value != null) {
           emit(RegistSucsses());
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
-              builder: (context) => HomeScreen(),
+              builder: (context) => NavBarScreen(),
             ),
           );
         } else {

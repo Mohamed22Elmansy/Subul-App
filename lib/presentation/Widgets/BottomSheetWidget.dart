@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graduation/presentation/Screens/AddPatient.dart';
 import 'package:graduation/presentation/Screens/PayZakaScreen.dart';
 import 'package:graduation/presentation/Screens/TabraMostamal.dart';
+import 'package:graduation/presentation/Screens/addCase.dart';
 import 'package:graduation/presentation/Widgets/BottomSheetButton.dart';
 
 import '../Screens/TabraScreen.dart';
@@ -42,6 +43,17 @@ class BottomSheetWidget extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => AddPatient()),
+                );
+              },
+            ),
+            SizedBox(
+              height: height / 20,
+            ),
+            BootomSheetButton(
+              buttonText: "اضافه حاله",
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => AddCase()),
                 );
               },
             ),

@@ -31,7 +31,7 @@ class RegistScreen extends StatelessWidget {
                 height: pageheight / 3,
                 child: Center(
                   child: Text(
-                    "إنشاء حساب",
+                    "  حساب عميل",
                     style: TextStyle(
                       fontFamily:
                           Theme.of(context).textTheme.displayLarge?.fontFamily,
