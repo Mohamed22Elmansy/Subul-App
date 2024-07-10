@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation/businessLogic/cubit/login_page_cubit.dart';
 import 'package:graduation/businessLogic/cubit/reset_password_cubit.dart';
+import 'package:graduation/data/server/cacheHelper.dart';
 import 'package:graduation/presentation/Screens/RegistCharity.dart';
 import 'package:graduation/presentation/Screens/registScreen.dart';
 import 'package:graduation/presentation/Widgets/Dialog.dart';
 import 'package:graduation/presentation/Widgets/TextField.dart';
+import 'package:graduation/presentation/Widgets/type.dart';
 
 class LoginScreen extends StatelessWidget {
   var formKey = GlobalKey<FormState>();
@@ -200,78 +202,97 @@ class LoginScreen extends StatelessWidget {
                             ),
                           ),
                           onPressed: () {
-                            showDialog(context: context, builder: (ctx)=>AlertDialog(
-      icon: const Icon(Icons.app_registration),
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      content: SizedBox(
-        height: pageheight / 4,
-        child: Column(
-          children: [
-            Text(
-              "انشاء حساب",
-              style: TextStyle(
-                color: const Color.fromRGBO(145, 104, 58, 1),
-                fontSize: pagewidth / 18,
-                fontFamily: "Cairo",
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(
-              height: pageheight / 70,
-            ),
-            ElevatedButton(
-              onPressed: (){
-                Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => RegistScreen(),
-                              ),
-                            );
-              } , 
-             
-              style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all(
-                      const Color.fromRGBO(145, 104, 58, 1))),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Text(
-                  "مستخدم",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: pagewidth / 19,
-                      fontFamily: "Cairo"),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: pageheight / 70,
-            ),
-            ElevatedButton(
-              onPressed: (){Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => RegistCharity(),
-                              ),
-                            );}, 
-             
-              style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all(
-                      const Color.fromRGBO(145, 104, 58, 1))),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Text(
-                  "جمعيه",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: pagewidth / 19,
-                      fontFamily: "Cairo"),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    ));
-                            
+                            showDialog(
+                                context: context,
+                                builder: (ctx) => AlertDialog(
+                                      icon: const Icon(Icons.app_registration),
+                                      backgroundColor: Theme.of(context)
+                                          .scaffoldBackgroundColor,
+                                      content: SizedBox(
+                                        height: pageheight / 4,
+                                        child: Column(
+                                          children: [
+                                            Text(
+                                              "انشاء حساب",
+                                              style: TextStyle(
+                                                color: const Color.fromRGBO(
+                                                    145, 104, 58, 1),
+                                                fontSize: pagewidth / 18,
+                                                fontFamily: "Cairo",
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                            SizedBox(
+                                              height: pageheight / 70,
+                                            ),
+                                            ElevatedButton(
+                                              onPressed: () {
+                                                Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        RegistScreen(),
+                                                  ),
+                                                );
+                                              },
+                                              style: ButtonStyle(
+                                                  backgroundColor:
+                                                      WidgetStateProperty.all(
+                                                          const Color.fromRGBO(
+                                                              145,
+                                                              104,
+                                                              58,
+                                                              1))),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 15),
+                                                child: Text(
+                                                  "مستخدم",
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: pagewidth / 19,
+                                                      fontFamily: "Cairo"),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: pageheight / 70,
+                                            ),
+                                            ElevatedButton(
+                                              onPressed: () {
+                                                Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        RegistCharity(),
+                                                  ),
+                                                );
+                                              },
+                                              style: ButtonStyle(
+                                                  backgroundColor:
+                                                      WidgetStateProperty.all(
+                                                          const Color.fromRGBO(
+                                                              145,
+                                                              104,
+                                                              58,
+                                                              1))),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 15),
+                                                child: Text(
+                                                  "جمعيه",
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: pagewidth / 19,
+                                                      fontFamily: "Cairo"),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ));
                           },
                         ),
                         Builder(builder: (ctx) {
@@ -339,10 +360,9 @@ class LoginScreen extends StatelessWidget {
                     ),
                     TextButton(
                       style: ButtonStyle(
-                          padding: WidgetStateProperty.all(
-                              EdgeInsets.symmetric(
-                                  horizontal: pagewidth / 30,
-                                  vertical: pagewidth / 50))),
+                          padding: WidgetStateProperty.all(EdgeInsets.symmetric(
+                              horizontal: pagewidth / 30,
+                              vertical: pagewidth / 50))),
                       child: Text(
                         "نسيت كلمه السر ؟",
                         style: TextStyle(
@@ -361,87 +381,190 @@ class LoginScreen extends StatelessWidget {
                       onPressed: () {
                         showDialog(
                             context: context,
-                            builder: (ctx) => BlocBuilder<ResetPasswordCubit,
-                                    ResetPasswordState>(
-                                  builder: (context, state) {
-                                    return AlertDialog(
-                                      actions: [
-                                        ElevatedButton(
-                                          onPressed: () {
-                                            if (confirmEmailControler
-                                                .text.isNotEmpty) {
-                                              BlocProvider.of<
-                                                          ResetPasswordCubit>(
-                                                      context)
-                                                  .confirmEmail(
-                                                      email:
-                                                          confirmEmailControler
-                                                              .text
-                                                              .trim(),
-                                                      context: context,
-                                                      tokenController:
-                                                          tokenControler,
-                                                      emailController:
-                                                          confirmEmailControler,
-                                                      newpasswordControler:
-                                                          newpasswordControler);
-                                            }
-                                          },
-                                          style: ButtonStyle(
-                                            shape: WidgetStateProperty.all(
-                                              RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(25),
+                            builder: (_) => SelectType()).then((val) async {
+                          if (await CacheHelper.getType() == "user") {
+                            showDialog(
+                                context: context,
+                                builder: (ctx) => BlocBuilder<
+                                        ResetPasswordCubit, ResetPasswordState>(
+                                      builder: (context, state) {
+                                        return AlertDialog(
+                                          actions: [
+                                            ElevatedButton(
+                                              onPressed: () {
+                                                if (confirmEmailControler
+                                                    .text.isNotEmpty) {
+                                                  BlocProvider.of<
+                                                              ResetPasswordCubit>(
+                                                          context)
+                                                      .confirmEmail(
+                                                          email:
+                                                              confirmEmailControler
+                                                                  .text
+                                                                  .trim(),
+                                                          context: context,
+                                                          tokenController:
+                                                              tokenControler,
+                                                          url:
+                                                              'https://subul.onrender.com/api/users/reset',
+                                                          emailController:
+                                                              confirmEmailControler,
+                                                          newpasswordControler:
+                                                              newpasswordControler);
+                                                }
+                                              },
+                                              style: ButtonStyle(
+                                                shape: WidgetStateProperty.all(
+                                                  RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            25),
+                                                  ),
+                                                ),
+                                                backgroundColor:
+                                                    WidgetStateProperty.all(
+                                                  const Color.fromRGBO(
+                                                      145, 104, 58, 1),
+                                                ),
+                                                padding:
+                                                    WidgetStateProperty.all(
+                                                  EdgeInsets.symmetric(
+                                                      horizontal:
+                                                          pagewidth / 15,
+                                                      vertical: pagewidth / 28),
+                                                ),
+                                              ),
+                                              child: Text(
+                                                BlocProvider.of<
+                                                            ResetPasswordCubit>(
+                                                        context)
+                                                    .buttonLable,
+                                                style: TextStyle(
+                                                  fontFamily: Theme.of(context)
+                                                      .textTheme
+                                                      .displayLarge
+                                                      ?.fontFamily,
+                                                  color: Colors.white,
+                                                  fontSize: pagewidth / 19,
+                                                  fontStyle: FontStyle.italic,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
                                             ),
-                                            backgroundColor:
-                                                WidgetStateProperty.all(
-                                              const Color.fromRGBO(
-                                                  145, 104, 58, 1),
-                                            ),
-                                            padding: WidgetStateProperty.all(
-                                              EdgeInsets.symmetric(
-                                                  horizontal: pagewidth / 15,
-                                                  vertical: pagewidth / 28),
-                                            ),
+                                          ],
+                                          actionsAlignment:
+                                              MainAxisAlignment.center,
+                                          backgroundColor: Theme.of(context)
+                                              .scaffoldBackgroundColor,
+                                          content: TextFielld(
+                                            editingController:
+                                                confirmEmailControler,
+                                            hintText: "بريـدك الإلكتروني",
+                                            icon: Icons.email_rounded,
+                                            suffixIcon: null,
+                                            validatorfun: (value) {
+                                              return;
+                                            },
+                                            obscureText: false,
+                                            keyboardType:
+                                                TextInputType.emailAddress,
                                           ),
-                                          child: Text(
-                                            BlocProvider.of<ResetPasswordCubit>(
-                                                    context)
-                                                .buttonLable,
-                                            style: TextStyle(
-                                              fontFamily: Theme.of(context)
-                                                  .textTheme
-                                                  .displayLarge
-                                                  ?.fontFamily,
-                                              color: Colors.white,
-                                              fontSize: pagewidth / 19,
-                                              fontStyle: FontStyle.italic,
-                                              fontWeight: FontWeight.bold,
+                                        );
+                                      },
+                                    ));
+                          } else {
+                            showDialog(
+                                context: context,
+                                builder: (ctx) => BlocBuilder<
+                                        ResetPasswordCubit, ResetPasswordState>(
+                                      builder: (context, state) {
+                                        return AlertDialog(
+                                          actions: [
+                                            ElevatedButton(
+                                              onPressed: () {
+                                                if (confirmEmailControler
+                                                    .text.isNotEmpty) {
+                                                  BlocProvider.of<
+                                                              ResetPasswordCubit>(
+                                                          context)
+                                                      .confirmEmail(
+                                                          email:
+                                                              confirmEmailControler
+                                                                  .text
+                                                                  .trim(),
+                                                          context: context,
+                                                          tokenController:
+                                                              tokenControler,
+                                                          url:
+                                                              'https://subul.onrender.com/api/charities/reset',
+                                                          emailController:
+                                                              confirmEmailControler,
+                                                          newpasswordControler:
+                                                              newpasswordControler);
+                                                }
+                                              },
+                                              style: ButtonStyle(
+                                                shape: WidgetStateProperty.all(
+                                                  RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            25),
+                                                  ),
+                                                ),
+                                                backgroundColor:
+                                                    WidgetStateProperty.all(
+                                                  const Color.fromRGBO(
+                                                      145, 104, 58, 1),
+                                                ),
+                                                padding:
+                                                    WidgetStateProperty.all(
+                                                  EdgeInsets.symmetric(
+                                                      horizontal:
+                                                          pagewidth / 15,
+                                                      vertical: pagewidth / 28),
+                                                ),
+                                              ),
+                                              child: Text(
+                                                BlocProvider.of<
+                                                            ResetPasswordCubit>(
+                                                        context)
+                                                    .buttonLable,
+                                                style: TextStyle(
+                                                  fontFamily: Theme.of(context)
+                                                      .textTheme
+                                                      .displayLarge
+                                                      ?.fontFamily,
+                                                  color: Colors.white,
+                                                  fontSize: pagewidth / 19,
+                                                  fontStyle: FontStyle.italic,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
                                             ),
+                                          ],
+                                          actionsAlignment:
+                                              MainAxisAlignment.center,
+                                          backgroundColor: Theme.of(context)
+                                              .scaffoldBackgroundColor,
+                                          content: TextFielld(
+                                            editingController:
+                                                confirmEmailControler,
+                                            hintText: "بريـدك الإلكتروني",
+                                            icon: Icons.email_rounded,
+                                            suffixIcon: null,
+                                            validatorfun: (value) {
+                                              return;
+                                            },
+                                            obscureText: false,
+                                            keyboardType:
+                                                TextInputType.emailAddress,
                                           ),
-                                        ),
-                                      ],
-                                      actionsAlignment:
-                                          MainAxisAlignment.center,
-                                      backgroundColor: Theme.of(context)
-                                          .scaffoldBackgroundColor,
-                                      content: TextFielld(
-                                        editingController:
-                                            confirmEmailControler,
-                                        hintText: "بريـدك الإلكتروني",
-                                        icon: Icons.email_rounded,
-                                        suffixIcon: null,
-                                        validatorfun: (value) {
-                                          return;
-                                        },
-                                        obscureText: false,
-                                        keyboardType:
-                                            TextInputType.emailAddress,
-                                      ),
-                                    );
-                                  },
-                                ));
+                                        );
+                                      },
+                                    ));
+                          
+                          }
+                        });
                       },
                     ),
                   ],

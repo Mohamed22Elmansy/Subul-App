@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation/data/server/diohellper.dart';
+import 'package:graduation/presentation/Screens/NavBarScreen.dart';
 import 'package:graduation/presentation/Screens/resetpass.dart';
 import 'package:graduation/presentation/Widgets/Dialog.dart';
 
@@ -18,6 +19,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
       required BuildContext context,
       required tokenController,
       required emailController,
+      required url,
       required newpasswordControler}) {
     buttonLable = "...جار التاكد";
     emit(ConfirmPasswordLooding());
@@ -26,7 +28,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
         postdata: {
           "email": email,
         },
-        url: 'https://subul.onrender.com/api/users/reset',
+        url: url,
       ).then((value) {
         if (value != null) {
           buttonLable = "تاكيـد";
@@ -35,6 +37,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
               context: context,
               builder: (ct) {
                 return resetPasswordPage(
+                  myUrl: url,
                   emailController: emailController,
                   newpasswordControler: newpasswordControler,
                   tokenController: tokenController,
@@ -62,6 +65,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
   void resetPassword(
       {required String token,
       required String email,
+      required String url,
       required String newPassword,
       required BuildContext context}) {
     buttonLable = "...جار التاكد";
@@ -71,13 +75,13 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
         "token": token,
         "email": email,
         "password": newPassword,
-      }, url: 'https://subul.onrender.com/api/users/reset/confirm')
+      }, url: url)
           .then((value) {
         if (value != null) {
           emit(ResetPasswordSucsses());
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
-              builder: (context) => HomeScreen(),
+              builder: (context) => NavBarScreen(),
             ),
           );
         } else {

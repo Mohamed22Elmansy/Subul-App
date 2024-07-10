@@ -47,6 +47,20 @@ class CacheHelper {
     return 0;
   }
 
+  static Future<void> storetype(String type) async {
+    final sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setString("type", type);
+  }
+
+  static Future<String> getType() async {
+    final sharedPreferences = await SharedPreferences.getInstance();
+    String? type = sharedPreferences.getString("type");
+    if (type != null) {
+      return type;
+    } else
+      {return "";}
+  }
+
   static Future<void> storeUserData(
       ProfileData profileData, String password) async {
     final sharedPreferences = await SharedPreferences.getInstance();

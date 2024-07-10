@@ -1,6 +1,13 @@
+
+
+
+
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation/businessLogic/cubit/reset_password_cubit.dart';
+
 
 import '../Widgets/TextField.dart';
 
@@ -8,14 +15,18 @@ class resetPasswordPage extends StatelessWidget {
   resetPasswordPage(
       {super.key,
       required this.tokenController,
+      required this.myUrl,
       required this.emailController,
       required this.newpasswordControler});
+      
   TextEditingController tokenController = TextEditingController();
   TextEditingController emailController = TextEditingController();
+  String myUrl ;
   TextEditingController newpasswordControler = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    
     final pageheight = MediaQuery.of(context).size.height;
     final pagewidth = MediaQuery.of(context).size.width;
     return BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
@@ -36,6 +47,7 @@ class resetPasswordPage extends StatelessWidget {
                     BlocProvider.of<ResetPasswordCubit>(context).resetPassword(
                         token: tokenController.text.trim(),
                         email: emailController.text.trim(),
+                        url: myUrl,
                         newPassword: newpasswordControler.text,
                         context: context);
                   }
