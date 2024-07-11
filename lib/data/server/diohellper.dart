@@ -15,8 +15,26 @@ class DioHelper {
     );
   }
 
+  
+
   static Future<Response?> PostData({
     required Map<String, dynamic> postdata,
+    required String url,
+  }) async {
+    try {
+      return await dio?.post(url, data: postdata);
+    } on DioException catch (e) {
+      String errorMessage = 'Unknown error';
+      if (e.response != null) {
+        errorMessage = 'Error: ${e.response!.statusCode} ${e.response!.data}';
+      } else {
+        errorMessage = 'Error: ${e.message}';
+      }
+      print(errorMessage);
+    }
+  }
+  static Future<Response?> PostDataWithImage({
+    required FormData postdata,
     required String url,
   }) async {
     try {

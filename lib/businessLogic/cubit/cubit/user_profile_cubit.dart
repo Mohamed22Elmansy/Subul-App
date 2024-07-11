@@ -41,7 +41,7 @@ class UserProfileCubit extends Cubit<UserProfileState> {
       }, url: 'https://subul.onrender.com/api/users/auth')
           .then((value) {
         if (value != null) {
-          CacheHelper.cacheUserLogin(true);
+          CacheHelper.cacheUserLogin(true , "user");
 
           ProfileData userData = ProfileData.fromjson(value.data);
           CacheHelper.storeUserData(userData, password!);
@@ -79,7 +79,7 @@ class UserProfileCubit extends Cubit<UserProfileState> {
     try {
       DioHelper.PostData(
           postdata: {}, url: "https://subul.onrender.com/api/users/logout");
-      CacheHelper.cacheUserLogin(false).then((value) => checkUser());
+      CacheHelper.cacheUserLogin(false , "user").then((value) => checkUser());
       emit(UserLogOut());
     } catch (e) {
       return;

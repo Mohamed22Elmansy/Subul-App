@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,6 +8,8 @@ import '../../../data/server/diohellper.dart';
 import '../../../presentation/Screens/NavBarScreen.dart';
 import '../../../presentation/Widgets/Dialog.dart';
 import 'pick_image_cubit.dart';
+import 'dart:async';
+import 'package:http_parser/http_parser.dart';
 
 part 'registcharity_state.dart';
 
@@ -44,21 +47,26 @@ class RegistcharityCubit extends Cubit<RegistcharityState> {
     required BuildContext context,
     required String contantLable,
     required double fontSize,
-  }) {
+  }) async {
     buttonLable = "...جار الأنشاء";
     emit(RegistcharityRegisting());
     try {
-      DioHelper.PostData(
+      DioHelper.PostDataWithImage(
         url: 'https://subul.onrender.com/api/charities/register',
-        postdata: {
+        postdata: FormData.fromMap({
           "name": name,
+          "currency": "EGP",
           "description": describtion,
           "charityInfo": {
             "registeredNumber": registeredNumber,
             "establishedDate": establishedDate,
           },
           "email": email,
-          //"image": BlocProvider.of<PickImageCubit>(context).photo,
+          "image": await MultipartFile.fromFile(
+              contentType: MediaType("image", "png"),
+              BlocProvider.of<PickImageCubit>(context).image!.path,
+              filename: BlocProvider.of<PickImageCubit>(context)
+                  .fileName), // BlocProvider.of<PickImageCubit>(context).photo,
           "password": password,
           "phone": phone,
           "contactInfo": {
@@ -67,7 +75,7 @@ class RegistcharityCubit extends Cubit<RegistcharityState> {
             "websiteUrl": website,
           },
           "charityLocation": {"governorate": charityLocation},
-        },
+        }),
       ).then((value) {
         if (value != null) {
           emit(RegistcharitySuccess());
@@ -86,7 +94,7 @@ class RegistcharityCubit extends Cubit<RegistcharityState> {
         }
       });
     } catch (e) {
-      return;
+      return print(e);
     }
   }
 }

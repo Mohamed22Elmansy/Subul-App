@@ -8,6 +8,7 @@ part 'pick_image_state.dart';
 class PickImageCubit extends Cubit<PickImageState> {
   PickImageCubit() : super(PickImageInitial());
   File? image;
+  String? fileName;
   MultipartFile? photo;
   Future<void> pickImage(ImageSource source) async {
     emit(PickImageLooding());
@@ -17,7 +18,7 @@ class PickImageCubit extends Cubit<PickImageState> {
         if (value != null) {
           emit(PickImageSuccess());
           image = File(value.path);
-          String fileName = image!.path.split('/').last;
+           fileName = image!.path.split('/').last;
           photo = await MultipartFile.fromFile(image!.path, filename: fileName);
         } else {
           emit(PickImageFailed());

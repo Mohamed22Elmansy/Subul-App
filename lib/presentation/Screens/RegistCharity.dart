@@ -387,15 +387,18 @@ class RegistCharity extends StatelessWidget {
                               if (formKey.currentState!.validate()) {
                                 BlocProvider.of<RegistcharityCubit>(context)
                                     .regist(
-                                        name: nameControler.text,
+                                        name: nameControler.text.trim(),
                                         password: passwordControler.text,
-                                        email: emailControler.text,
-                                        website: websiteControler.text,
-                                        phone: phoneControler.text,
-                                        describtion: dateControler.text,
-                                        registeredNumber: numControler.text,
-                                        establishedDate: dateControler.text,
-                                        charityLocation: cityControler.text,
+                                        email: emailControler.text.trim(),
+                                        website: websiteControler.text.trim(),
+                                        phone: phoneControler.text.trim(),
+                                        describtion: dateControler.text.trim(),
+                                        registeredNumber:
+                                            numControler.text.trim(),
+                                        establishedDate:
+                                            dateControler.text.trim(),
+                                        charityLocation:
+                                            cityControler.text.trim(),
                                         context: context,
                                         contantLable: "خطأ في إنشاء الحساب",
                                         fontSize: width / 20);

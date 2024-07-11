@@ -62,13 +62,15 @@ class LoginPageCubit extends Cubit<LoginPageState> {
           emit(LoginPagesucsses());
           buttonLable = "تسجيل الدخول";
 
+          if (logintype == Logintype.user) {
+            CacheHelper.cacheUserLogin(true , "user");
 
-          CacheHelper.cacheUserLogin(true);
-          
-     
-          ProfileData userData = ProfileData.fromjson(value.data);
-          CacheHelper.storeUserData(userData , password).then((value) =>
-              BlocProvider.of<UserProfileCubit>(context).checkUser());
+            ProfileData userData = ProfileData.fromjson(value.data);
+            CacheHelper.storeUserData(userData, password).then((value) =>
+                BlocProvider.of<UserProfileCubit>(context).checkUser());
+          }else{
+            CacheHelper.cacheUserLogin(true , "charity");
+          }
 
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
