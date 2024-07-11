@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation/businessLogic/cubit/cubit/user_profile_cubit.dart';
+import 'package:graduation/data/models/charityProfileData.dart';
 import 'package:graduation/data/models/profilemodel.dart';
 import 'package:graduation/data/server/cacheHelper.dart';
 import 'package:graduation/presentation/Screens/NavBarScreen.dart';
@@ -63,13 +64,15 @@ class LoginPageCubit extends Cubit<LoginPageState> {
           buttonLable = "تسجيل الدخول";
 
           if (logintype == Logintype.user) {
-            CacheHelper.cacheUserLogin(true , "user");
+            CacheHelper.cacheUserLogin(true, "user");
 
             ProfileData userData = ProfileData.fromjson(value.data);
             CacheHelper.storeUserData(userData, password).then((value) =>
                 BlocProvider.of<UserProfileCubit>(context).checkUser());
-          }else{
-            CacheHelper.cacheUserLogin(true , "charity");
+          } else {
+            CacheHelper.cacheUserLogin(true, "charity");
+            CharityProfileData userData =
+                CharityProfileData.fromJson(value.data);
           }
 
           Navigator.of(context).pushReplacement(

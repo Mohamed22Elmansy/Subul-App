@@ -28,7 +28,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     buttonLable = "...جار التعديل";
     emit(EditProfileLooding());
     try {
-      DioHelper.PostData(postdata: {
+      DioHelper.PutData(postdata: {
         "name.firstName": "",
         "name.lastName": nameController!.text,
         "phone": phoneController!.text,

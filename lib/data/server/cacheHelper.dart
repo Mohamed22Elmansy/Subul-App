@@ -4,11 +4,20 @@ import 'package:graduation/data/models/profilemodel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CacheHelper {
-  static Future<void> cacheUserLogin(bool isLogin , String loginType) async {
+  static Future<void> cacheUserLogin(bool isLogin, String loginType) async {
     final sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.setBool("User_Login_State", isLogin);
     sharedPreferences.setString("LoginType", loginType);
-    
+  }
+
+  static Future<bool> getLoginType() async {
+    final sharedPreferences = await SharedPreferences.getInstance();
+    final cacheUserLogin = sharedPreferences.getString("LoginType");
+    if (cacheUserLogin == "charity") {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   static Future<bool> getcacheUserLogin() async {
@@ -59,8 +68,9 @@ class CacheHelper {
     String? type = sharedPreferences.getString("type");
     if (type != null) {
       return type;
-    } else
-      {return "";}
+    } else {
+      return "";
+    }
   }
 
   static Future<void> storeUserData(

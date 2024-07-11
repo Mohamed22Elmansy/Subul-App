@@ -22,6 +22,7 @@ class RegistcharityCubit extends Cubit<RegistcharityState> {
     emit(RegistcharitySelsctingData());
     final DateTime? picked = await showDatePicker(
       context: context,
+      
       initialDate: DateTime.now(),
       firstDate: DateTime(2000),
       lastDate: DateTime(2101),

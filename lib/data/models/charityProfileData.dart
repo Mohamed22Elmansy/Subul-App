@@ -6,7 +6,6 @@ class CharityProfileData {
 
   CharityProfileData.fromJson(Map<String, dynamic> jsonData) {
     charity = Charity(
-  
         emailVerification: Verification(
             isVerified: jsonData['charity']['emailVerification']['isVerified'],
             verificationDate: jsonData['charity']['emailVerification']
@@ -52,7 +51,7 @@ class CharityProfileData {
         updatedAt: jsonData['charity']['updatedAt'],
         v: jsonData['charity']['__v']);
     message = jsonData['message'];
-    emailAlert= jsonData['emailAlert'];
+    emailAlert = jsonData['emailAlert'];
     token = jsonData['token'];
   }
 }
@@ -71,18 +70,18 @@ class Charity {
   String? password;
   String? name;
   ContactInfo? contactInfo;
-  DateTime? description;
+  String? description;
   int? totalDonationsIncome;
   String? verificationCode;
   bool? isEnabled;
   bool? isConfirmed;
   bool? isPending;
   int? rate;
-  List<String>? currency;
+  List<dynamic> currency;
   List<CharityLocation>? charityLocation;
   List<dynamic>? donorRequests;
-  DateTime? createdAt;
-  DateTime? updatedAt;
+  String? createdAt;
+  String? updatedAt;
   int? v;
 
   Charity({
@@ -131,7 +130,7 @@ class CharityDocs {
 
 class CharityInfo {
   String registeredNumber;
-  DateTime establishedDate;
+  String establishedDate;
 
   CharityInfo({
     required this.registeredNumber,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation/businessLogic/cubit/cubit/registcharity_cubit.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 
 import '../../businessLogic/cubit/cubit/pick_image_cubit.dart';
 import '../../businessLogic/cubit/login_page_cubit.dart';
@@ -268,10 +269,10 @@ class RegistCharity extends StatelessWidget {
                       BlocProvider.of<RegistcharityCubit>(context)
                           .selectDate(context)
                           .then((val) {
-                        dateControler.text =
-                            BlocProvider.of<RegistcharityCubit>(context)
-                                .selectedDate
-                                .toString();
+                        dateControler.text = DateFormat('yyyy-MM-dd ')
+                            .format(BlocProvider.of<RegistcharityCubit>(context)
+                                .selectedDate!)
+                            .toString();
                       });
                     },
                     controller: dateControler,
@@ -299,7 +300,7 @@ class RegistCharity extends StatelessWidget {
                           fontFamily: "Tajawal",
                           fontSize: 18,
                           color: Color.fromRGBO(145, 104, 58, 1)),
-                      hintTextDirection: TextDirection.rtl,
+                      // hintTextDirection: TextDirectionRTL,
                       prefixIcon: const Icon(
                         Icons.date_range,
                         color: Color.fromRGBO(145, 104, 58, 1),
