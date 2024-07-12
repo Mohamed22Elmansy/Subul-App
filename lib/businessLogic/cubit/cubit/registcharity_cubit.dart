@@ -1,8 +1,9 @@
-import 'package:bloc/bloc.dart';
+
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation/businessLogic/cubit/cubit/user_profile_cubit.dart';
 
 import '../../../data/server/diohellper.dart';
 import '../../../presentation/Screens/NavBarScreen.dart';
@@ -53,6 +54,7 @@ class RegistcharityCubit extends Cubit<RegistcharityState> {
     emit(RegistcharityRegisting());
     try {
       DioHelper.PostDataWithImage(
+        token: UserProfileCubit.token,
         url: 'https://subul.onrender.com/api/charities/register',
         postdata: FormData.fromMap({
           "name": name,

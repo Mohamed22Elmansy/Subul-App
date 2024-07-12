@@ -28,12 +28,18 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     buttonLable = "...جار التعديل";
     emit(EditProfileLooding());
     try {
-      DioHelper.PutData(postdata: {
-        "name.firstName": "",
-        "name.lastName": nameController!.text,
+      DioHelper.PutData(
+        token:UserProfileCubit.token ,
+        postdata: {
+        "name": {
+          "firstName": "a",
+          "lastName": nameController!.text,
+        },
         "phone": phoneController!.text,
         "email": emailController!.text,
-        "location.governorate":cityController!.text,
+        "location": {
+          "governorate": cityController!.text,
+        }
       }, url: "https://subul.onrender.com/api/users/profile/edit")
           .then((val) async {
         if (val != null) {
@@ -46,7 +52,6 @@ class EditProfileCubit extends Cubit<EditProfileState> {
               "User Phone Number", phoneController!.text);
 
           sharedPreferences.setString("User Email", emailController!.text);
-
         } else {
           emit(EditProfileFailed());
           buttonLable = "تعديل";

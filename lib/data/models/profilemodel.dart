@@ -1,6 +1,6 @@
 class ProfileData {
   User? user;
-  String? message;
+  String? token;
 
   ProfileData.fromjson(Map<String, dynamic> jsonData) {
     user = User(
@@ -34,7 +34,7 @@ class ProfileData {
       v: jsonData['user']['__v'],
     );
 
-    message = jsonData['msg'];
+    token = jsonData['token'];
   }
 }
 

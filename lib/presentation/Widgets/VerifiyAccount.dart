@@ -27,9 +27,16 @@ class VerifyAccount extends StatelessWidget {
         Center(
           child: ElevatedButton(
             onPressed: () {
-             
-              BlocProvider.of<UserProfileCubit>(context)
-                  .verifyAccount(token: verifiyEmailController.text.trim());
+              BlocProvider.of<UserProfileCubit>(context).loginType!
+                  ? BlocProvider.of<UserProfileCubit>(context).verifyAccount(
+                    context: context
+                    ,
+                      token: verifiyEmailController.text.trim(),
+                      url: 'https://subul.onrender.com/api/charities/activate')
+                  : BlocProvider.of<UserProfileCubit>(context).verifyAccount(
+                    context: context,
+                      token: verifiyEmailController.text.trim(),
+                      url: 'https://subul.onrender.com/api/users/activate');
             },
             style: ElevatedButton.styleFrom(
                 side: BorderSide.none,

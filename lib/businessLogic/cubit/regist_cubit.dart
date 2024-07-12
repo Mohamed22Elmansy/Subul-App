@@ -45,6 +45,7 @@ class RegistCubit extends Cubit<RegistState> {
     emit(RegistLooding());
     try {
       DioHelper.PostData(
+        token: "",
         url: 'https://subul.onrender.com/api/users',
         postdata: {
           "name": {

@@ -1,10 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation/data/models/charityProfileData.dart';
 
 import 'package:graduation/data/server/cacheHelper.dart';
-
 
 import '../../../data/models/profilemodel.dart';
 import '../../../data/server/diohellper.dart';
@@ -17,34 +18,53 @@ class UserProfileCubit extends Cubit<UserProfileState> {
   bool isVerified = false;
   String userName = "Guest";
   String phoneNumber = "000000000";
-
+  bool? loginType;
   String city = "Cairo";
   String? password;
   String email = "Guest@Subul.com";
+ static String token ="";
 
   void checkUser() async {
     isLogin = await CacheHelper.getcacheUserLogin();
+    loginType = await CacheHelper.getLoginType();
     if (isLogin == true) {
+      print("is login");
       emit(UserIsLogin());
 
       Map<String, dynamic> userData = await CacheHelper.getUserData();
+
       userName =
           "${userData["User First Name"]} ${userData["User Second Name"]}";
       email = userData["User Email"];
       city = userData["User Location"];
+      token = userData["Token"];
+
       isVerified = userData["Is Verified"];
       phoneNumber = userData["User Phone Number"];
       password = userData["password"];
-      DioHelper.PostData(postdata: {
-        "email": email,
-        "password": password,
-      }, url: 'https://subul.onrender.com/api/users/auth')
+      DioHelper.PostData(
+        token: "",
+              postdata: {
+            "email": email,
+            "password": password,
+          },
+              url: loginType!
+                  ? 'https://subul.onrender.com/api/charities/auth'
+                  : 'https://subul.onrender.com/api/users/auth')
           .then((value) {
         if (value != null) {
-          CacheHelper.cacheUserLogin(true , "user");
+          if (loginType!) {
+            print("charity");
+            CacheHelper.cacheUserLogin(true, "charity");
+            CharityProfileData data = CharityProfileData.fromJson(value.data);
+            CacheHelper.storeCharityData(data, password!);
+          } else {
+            print("user");
+            CacheHelper.cacheUserLogin(true, "user");
 
-          ProfileData userData = ProfileData.fromjson(value.data);
-          CacheHelper.storeUserData(userData, password!);
+            ProfileData userData = ProfileData.fromjson(value.data);
+            CacheHelper.storeUserData(userData, password!);
+          }
         }
       });
     } else {
@@ -58,13 +78,10 @@ class UserProfileCubit extends Cubit<UserProfileState> {
     }
   }
 
-  void verifyAccount({required String token}) {
+  void verifyAccount({required String token, required String url , required BuildContext context}) {
     try {
       print(token);
-      DioHelper.PostData(
-              postdata: {"token": token},
-              url: "https://subul.onrender.com/api/users/activate")
-          .then((value) {
+      DioHelper.PostData(token: UserProfileCubit.token, postdata: {"token": token}, url: url).then((value) {
         if (value != null) {
           checkUser();
           emit(UserVerifyAccount());
@@ -75,11 +92,10 @@ class UserProfileCubit extends Cubit<UserProfileState> {
     }
   }
 
-  void logOut(BuildContext context) {
+  void logOut({required String url}) {
     try {
-      DioHelper.PostData(
-          postdata: {}, url: "https://subul.onrender.com/api/users/logout");
-      CacheHelper.cacheUserLogin(false , "user").then((value) => checkUser());
+      DioHelper.PostData( token: "",postdata: {}, url: url);
+      CacheHelper.cacheUserLogin(false, "user").then((value) => checkUser());
       emit(UserLogOut());
     } catch (e) {
       return;

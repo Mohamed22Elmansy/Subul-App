@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:graduation/data/models/charityProfileData.dart';
 import 'package:graduation/data/models/profilemodel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -72,12 +73,33 @@ class CacheHelper {
       return "";
     }
   }
+  static Future<void> storeCharityData(CharityProfileData profileData, String password)async{
+final sharedPreferences = await SharedPreferences.getInstance();
+ sharedPreferences.setString(
+        "User First Name",profileData.charity!.name );
+ sharedPreferences.setString(
+        "User Second Name","" );
+ sharedPreferences.setString(
+        "User Phone Number",profileData.charity!.contactInfo!.phone );
+ sharedPreferences.setString(
+        "User Email",profileData.charity!.email );
+        sharedPreferences.setBool(
+        "Is Verified", profileData.charity!.emailVerification!.isVerified);
+        sharedPreferences.setString("password", password);
+        sharedPreferences.setString(
+        "User Location", "Cairo");
+        sharedPreferences.setString(
+        "Token", profileData.token!);
+  }
 
   static Future<void> storeUserData(
       ProfileData profileData, String password) async {
     final sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.setString(
         "User First Name", profileData.user!.name.firstName);
+    sharedPreferences.setString(
+        "Token", profileData.token!);
+    
     sharedPreferences.setString(
         "User Second Name", profileData.user!.name.lastName);
     sharedPreferences.setString("User Phone Number", profileData.user!.phone);
@@ -100,6 +122,7 @@ class CacheHelper {
       "password": sharedPreferences.getString("password"),
       "User Phone Number": sharedPreferences.getString("User Phone Number"),
       "User Location": sharedPreferences.getString("User Location"),
+      "Token" : sharedPreferences.getString("Token"),
     };
     return userData;
   }

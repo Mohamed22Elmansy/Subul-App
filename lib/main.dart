@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation/businessLogic/cubit/cubit/add_case_cubit.dart';
 import 'package:graduation/businessLogic/cubit/cubit/cubit/booked_cases_cubit.dart';
 import 'package:graduation/businessLogic/cubit/cubit/edit_profile_cubit.dart';
 import 'package:graduation/businessLogic/cubit/cubit/pick_image_cubit.dart';
@@ -40,6 +41,8 @@ class MyApp extends StatelessWidget {
               create: (context) => UserProfileCubit()..checkUser()),
           BlocProvider<ResetPasswordCubit>(
               create: (context) => ResetPasswordCubit()),
+          BlocProvider<AddCaseCubit>(
+              create: (context) => AddCaseCubit()),
           BlocProvider<BookedCasesCubit>(
               create: (context) => BookedCasesCubit()..LoodBookedList()),
         ],//flutter pub run flutter_launcher_icons:main

@@ -56,6 +56,7 @@ class LoginPageCubit extends Cubit<LoginPageState> {
         url = 'https://subul.onrender.com/api/charities/auth';
       }
       DioHelper.PostData(
+        token: "",
         url: url!,
         postdata: {"email": email, "password": password},
       ).then((value) {
@@ -73,6 +74,8 @@ class LoginPageCubit extends Cubit<LoginPageState> {
             CacheHelper.cacheUserLogin(true, "charity");
             CharityProfileData userData =
                 CharityProfileData.fromJson(value.data);
+                 CacheHelper.storeCharityData(userData, password).then((value) =>
+                BlocProvider.of<UserProfileCubit>(context).checkUser());
           }
 
           Navigator.of(context).pushReplacement(

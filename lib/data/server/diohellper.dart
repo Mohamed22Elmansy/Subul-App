@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:dio/dio.dart';
+import 'package:graduation/businessLogic/cubit/cubit/user_profile_cubit.dart';
 
 class DioHelper {
   static Dio? dio;
@@ -9,20 +10,31 @@ class DioHelper {
       BaseOptions(
         baseUrl: '',
         receiveDataWhenStatusError: true,
+        headers: {
+          'Cookie':
+              'jwt=$UserProfileCubit.token', // Add the JWT to the Cookie header
+        },
         connectTimeout: const Duration(minutes: 3),
         receiveTimeout: const Duration(minutes: 3),
       ),
     );
   }
 
-  
-
   static Future<Response?> PostData({
     required Map<String, dynamic> postdata,
     required String url,
+    required String token,
   }) async {
     try {
-      return await dio?.post(url, data: postdata);
+      return await dio?.post(
+        url,
+        data: postdata,
+        options: Options(
+          headers: {
+            'Cookie': 'jwt=$token', // Add the JWT to the Cookie header
+          },
+        ),
+      );
     } on DioException catch (e) {
       String errorMessage = 'Unknown error';
       if (e.response != null) {
@@ -33,12 +45,17 @@ class DioHelper {
       print(errorMessage);
     }
   }
+
   static Future<Response?> PutData({
     required Map<String, dynamic> postdata,
     required String url,
+    required String token,
   }) async {
     try {
-      return await dio?.put(url, data: postdata);
+      return await dio?.put(
+        url,
+        data: postdata,
+      );
     } on DioException catch (e) {
       String errorMessage = 'Unknown error';
       if (e.response != null) {
@@ -49,12 +66,22 @@ class DioHelper {
       print(errorMessage);
     }
   }
+
   static Future<Response?> PostDataWithImage({
     required FormData postdata,
     required String url,
+    required String token,
   }) async {
     try {
-      return await dio?.post(url, data: postdata);
+      return await dio?.post(
+        url,
+        data: postdata,
+        options: Options(
+          headers: {
+            'Cookie': 'jwt=$token', // Add the JWT to the Cookie header
+          },
+        ),
+      );
     } on DioException catch (e) {
       String errorMessage = 'Unknown error';
       if (e.response != null) {

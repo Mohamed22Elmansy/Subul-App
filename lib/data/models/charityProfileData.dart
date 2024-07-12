@@ -66,9 +66,9 @@ class Charity {
   int? numberOfCases;
   int? totalNumberOfDonors;
   String? image;
-  String? email;
+  String email;
   String? password;
-  String? name;
+  String name;
   ContactInfo? contactInfo;
   String? description;
   int? totalDonationsIncome;

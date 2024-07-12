@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation/businessLogic/cubit/cubit/user_profile_cubit.dart';
+import 'package:graduation/data/server/cacheHelper.dart';
 import 'package:graduation/presentation/Screens/AddPatient.dart';
 import 'package:graduation/presentation/Screens/PayZakaScreen.dart';
 import 'package:graduation/presentation/Screens/TabraMostamal.dart';
@@ -49,14 +52,16 @@ class BottomSheetWidget extends StatelessWidget {
             SizedBox(
               height: height / 20,
             ),
-            BootomSheetButton(
-              buttonText: "اضافه حاله",
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => AddCase()),
-                );
-              },
-            ),
+            BlocProvider.of<UserProfileCubit>(context).loginType!
+                ? BootomSheetButton(
+                    buttonText: "اضافه حاله",
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => AddCase()),
+                      );
+                    },
+                  )
+                : Container(),
             SizedBox(
               height: height / 20,
             ),

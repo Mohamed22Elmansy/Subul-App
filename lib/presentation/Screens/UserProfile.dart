@@ -168,7 +168,12 @@ class UserProfile extends StatelessWidget {
               ProfileTile(
                   icon: Icons.logout,
                   onTap: () {
-                    BlocProvider.of<UserProfileCubit>(context).logOut(context);
+                    BlocProvider.of<UserProfileCubit>(context).loginType!
+                        ? BlocProvider.of<UserProfileCubit>(context).logOut(
+                            url:
+                                'https://subul.onrender.com/api/charities/logout')
+                        : BlocProvider.of<UserProfileCubit>(context).logOut(
+                            url: 'https://subul.onrender.com/api/users/logout');
                   },
                   title: "تسجيل الخروج"),
             ],

@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation/businessLogic/cubit/cubit/user_profile_cubit.dart';
 import 'package:graduation/data/server/diohellper.dart';
 import 'package:graduation/presentation/Screens/NavBarScreen.dart';
 import 'package:graduation/presentation/Screens/resetpass.dart';
@@ -25,6 +27,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
     emit(ConfirmPasswordLooding());
     try {
       DioHelper.PostData(
+        token: UserProfileCubit.token,
         postdata: {
           "email": email,
         },
@@ -75,7 +78,9 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
         "token": token,
         "email": email,
         "password": newPassword,
-      }, url: url)
+
+      },
+      token: UserProfileCubit.token, url: url)
           .then((value) {
         if (value != null) {
           emit(ResetPasswordSucsses());
