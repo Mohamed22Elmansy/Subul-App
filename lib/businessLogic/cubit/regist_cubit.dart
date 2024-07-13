@@ -60,6 +60,8 @@ class RegistCubit extends Cubit<RegistState> {
         },
       ).then((value) {
         if (value != null) {
+          try {
+            
           emit(RegistSucsses());
           CacheHelper.cacheUserLogin(true, "user");
 
@@ -71,6 +73,9 @@ class RegistCubit extends Cubit<RegistState> {
               builder: (context) => NavBarScreen(),
             ),
           );
+          } catch (e) {
+            print(e);
+          }
         } else {
           buttonLable = "إنشاء حساب";
           emit(RegistFailuer());
