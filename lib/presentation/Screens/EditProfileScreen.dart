@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation/businessLogic/cubit/cubit/edit_profile_cubit.dart';
+import 'package:graduation/businessLogic/cubit/cubit/user_profile_cubit.dart';
 
 import '../Widgets/TextField.dart';
 
@@ -155,6 +156,8 @@ class EditProfile extends StatelessWidget {
                             if (formKey.currentState!.validate()) {
                               BlocProvider.of<EditProfileCubit>(context)
                                   .EditProfile();
+                              BlocProvider.of<UserProfileCubit>(context)
+                                  .checkUser();
                             }
                           },
                           style: ElevatedButton.styleFrom(

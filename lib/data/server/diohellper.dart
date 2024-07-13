@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:dio/dio.dart';
 import 'package:graduation/businessLogic/cubit/cubit/user_profile_cubit.dart';
+import 'package:graduation/data/server/cacheHelper.dart';
 
 class DioHelper {
   static Dio? dio;
@@ -10,10 +11,10 @@ class DioHelper {
       BaseOptions(
         baseUrl: '',
         receiveDataWhenStatusError: true,
-        headers: {
+        /* headers: {
           'Cookie':
-              'jwt=$UserProfileCubit.token', // Add the JWT to the Cookie header
-        },
+              'jwt=${UserProfileCubit.token}', // Add the JWT to the Cookie header
+        },*/
         connectTimeout: const Duration(minutes: 3),
         receiveTimeout: const Duration(minutes: 3),
       ),
@@ -31,7 +32,8 @@ class DioHelper {
         data: postdata,
         options: Options(
           headers: {
-            'Cookie': 'jwt=$token', // Add the JWT to the Cookie header
+            'Cookie':
+                'jwt=${UserProfileCubit.token}', // Add the JWT to the Cookie header
           },
         ),
       );
@@ -52,10 +54,17 @@ class DioHelper {
     required String token,
   }) async {
     try {
-      return await dio?.put(
-        url,
-        data: postdata,
-      );
+      print(UserProfileCubit.token);
+
+      print(postdata.toString());
+      return await dio?.put(url,
+          data: postdata,
+          options: Options(
+            headers: {
+              'Cookie':
+                  'jwt=${UserProfileCubit.token}', // Add the JWT to the Cookie header
+            },
+          ));
     } on DioException catch (e) {
       String errorMessage = 'Unknown error';
       if (e.response != null) {
@@ -73,12 +82,14 @@ class DioHelper {
     required String token,
   }) async {
     try {
+      print(UserProfileCubit.token);
       return await dio?.post(
         url,
         data: postdata,
         options: Options(
           headers: {
-            'Cookie': 'jwt=$token', // Add the JWT to the Cookie header
+            'Cookie':
+                'jwt=${UserProfileCubit.token}', // Add the JWT to the Cookie header
           },
         ),
       );
@@ -98,7 +109,15 @@ class DioHelper {
     required String url,
   }) async {
     try {
-      Response response = await dio!.get(url);
+      Response response = await dio!.get(
+        url,
+        options: Options(
+          headers: {
+            'Cookie':
+                'jwt=${UserProfileCubit.token}', // Add the JWT to the Cookie header
+          },
+        ),
+      );
       print(response.data.toString());
       return response;
     } catch (e) {

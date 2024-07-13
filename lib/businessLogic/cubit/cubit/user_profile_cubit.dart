@@ -18,11 +18,11 @@ class UserProfileCubit extends Cubit<UserProfileState> {
   bool isVerified = false;
   String userName = "Guest";
   String phoneNumber = "000000000";
-  bool? loginType;
+  static bool? loginType;
   String city = "Cairo";
   String? password;
   String email = "Guest@Subul.com";
- static String token ="";
+  static String token = "";
 
   void checkUser() async {
     isLogin = await CacheHelper.getcacheUserLogin();
@@ -37,17 +37,19 @@ class UserProfileCubit extends Cubit<UserProfileState> {
           "${userData["User First Name"]} ${userData["User Second Name"]}";
       email = userData["User Email"];
       city = userData["User Location"];
+
       token = userData["Token"];
+      print(token);
 
       isVerified = userData["Is Verified"];
       phoneNumber = userData["User Phone Number"];
       password = userData["password"];
       DioHelper.PostData(
-        token: "",
+              token: "",
               postdata: {
-            "email": email,
-            "password": password,
-          },
+                "email": email,
+                "password": password,
+              },
               url: loginType!
                   ? 'https://subul.onrender.com/api/charities/auth'
                   : 'https://subul.onrender.com/api/users/auth')
@@ -70,6 +72,8 @@ class UserProfileCubit extends Cubit<UserProfileState> {
     } else {
       userName = "Guest";
       city = "UnKnown";
+      token = "";
+      
       phoneNumber = "00000000";
       password = "";
       email = "Guest@Subul.com";
@@ -78,10 +82,17 @@ class UserProfileCubit extends Cubit<UserProfileState> {
     }
   }
 
-  void verifyAccount({required String token, required String url , required BuildContext context}) {
+  void verifyAccount(
+      {required String token,
+      required String url,
+      required BuildContext context}) {
     try {
       print(token);
-      DioHelper.PostData(token: UserProfileCubit.token, postdata: {"token": token}, url: url).then((value) {
+      DioHelper.PostData(
+              token: UserProfileCubit.token,
+              postdata: {"token": token},
+              url: url)
+          .then((value) {
         if (value != null) {
           checkUser();
           emit(UserVerifyAccount());
@@ -94,7 +105,7 @@ class UserProfileCubit extends Cubit<UserProfileState> {
 
   void logOut({required String url}) {
     try {
-      DioHelper.PostData( token: "",postdata: {}, url: url);
+      DioHelper.PostData(token: "", postdata: {}, url: url);
       CacheHelper.cacheUserLogin(false, "user").then((value) => checkUser());
       emit(UserLogOut());
     } catch (e) {

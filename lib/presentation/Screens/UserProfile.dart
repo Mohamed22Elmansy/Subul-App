@@ -134,6 +134,8 @@ class UserProfile extends StatelessWidget {
                       : ProfileTile(
                           icon: Icons.verified_user,
                           onTap: () {
+                            verifiyEmailController.text =
+                                UserProfileCubit.token;
                             showDialog(
                                 context: context,
                                 builder: (ctx) => VerifyAccount(
@@ -168,7 +170,7 @@ class UserProfile extends StatelessWidget {
               ProfileTile(
                   icon: Icons.logout,
                   onTap: () {
-                    BlocProvider.of<UserProfileCubit>(context).loginType!
+                    UserProfileCubit.loginType!
                         ? BlocProvider.of<UserProfileCubit>(context).logOut(
                             url:
                                 'https://subul.onrender.com/api/charities/logout')

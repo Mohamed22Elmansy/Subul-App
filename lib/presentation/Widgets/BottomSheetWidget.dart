@@ -52,7 +52,7 @@ class BottomSheetWidget extends StatelessWidget {
             SizedBox(
               height: height / 20,
             ),
-            BlocProvider.of<UserProfileCubit>(context).loginType!
+            UserProfileCubit.loginType!
                 ? BootomSheetButton(
                     buttonText: "اضافه حاله",
                     onPressed: () {
