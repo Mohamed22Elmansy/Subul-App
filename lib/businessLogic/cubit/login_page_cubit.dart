@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation/businessLogic/cubit/cubit/user_profile_cubit.dart';
+import 'package:graduation/data/models/AllCases.dart';
 import 'package:graduation/data/models/charityProfileData.dart';
 import 'package:graduation/data/models/profilemodel.dart';
 import 'package:graduation/data/server/cacheHelper.dart';
@@ -59,32 +60,34 @@ class LoginPageCubit extends Cubit<LoginPageState> {
         token: "",
         url: url!,
         postdata: {"email": email, "password": password},
-      ).then((value) {
+      ).then((value) async {
         if (value != null) {
           emit(LoginPagesucsses());
           buttonLable = "تسجيل الدخول";
 
           if (logintype == Logintype.user) {
             try {
-              CacheHelper.cacheUserLogin(true, "user");
+              await CacheHelper.cacheUserLogin(true, "user");
 
               ProfileData userData = ProfileData.fromjson(value.data);
-              CacheHelper.storeUserData(userData, password).then((value) =>
-                  BlocProvider.of<UserProfileCubit>(context).checkUser());
+
+              await CacheHelper.storeUserData(userData, password).then(
+                  (value) =>
+                      BlocProvider.of<UserProfileCubit>(context).checkUser());
             } catch (e) {
               print(e);
             }
           } else {
             try {
-               CacheHelper.cacheUserLogin(true, "charity");
-            CharityProfileData userData =
-                CharityProfileData.fromJson(value.data);
-            CacheHelper.storeCharityData(userData, password).then((value) =>
-                BlocProvider.of<UserProfileCubit>(context).checkUser());
+              await CacheHelper.cacheUserLogin(true, "charity");
+              CharityProfileData userData =
+                  CharityProfileData.fromJson(value.data);
+              await CacheHelper.storeCharityData(userData, password).then(
+                  (value) =>
+                      BlocProvider.of<UserProfileCubit>(context).checkUser());
             } catch (e) {
               print(e);
             }
-           
           }
 
           Navigator.of(context).pushReplacement(

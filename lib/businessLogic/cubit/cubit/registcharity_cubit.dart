@@ -1,10 +1,11 @@
-
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation/businessLogic/cubit/cubit/user_profile_cubit.dart';
 
+import '../../../data/models/charityProfileData.dart';
+import '../../../data/server/cacheHelper.dart';
 import '../../../data/server/diohellper.dart';
 import '../../../presentation/Screens/NavBarScreen.dart';
 import '../../../presentation/Widgets/Dialog.dart';
@@ -23,7 +24,6 @@ class RegistcharityCubit extends Cubit<RegistcharityState> {
     emit(RegistcharitySelsctingData());
     final DateTime? picked = await showDatePicker(
       context: context,
-      
       initialDate: DateTime.now(),
       firstDate: DateTime(2000),
       lastDate: DateTime(2101),
@@ -82,6 +82,11 @@ class RegistcharityCubit extends Cubit<RegistcharityState> {
       ).then((value) {
         if (value != null) {
           emit(RegistcharitySuccess());
+          CacheHelper.cacheUserLogin(true, "charity");
+          CharityProfileData userData = CharityProfileData.fromJson(value.data);
+          CacheHelper.storeCharityData(userData, password).then((value) =>
+              BlocProvider.of<UserProfileCubit>(context).checkUser());
+
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
               builder: (context) => NavBarScreen(),

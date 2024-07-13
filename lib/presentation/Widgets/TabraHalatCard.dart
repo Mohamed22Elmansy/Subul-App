@@ -2,16 +2,42 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation/businessLogic/cubit/cubit/cubit/booked_cases_cubit.dart';
 import 'package:graduation/data/server/cacheHelper.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import '../../data/server/diohellper.dart';
 import '../Screens/TabraMostamal.dart';
 import '../Screens/TabraScreen.dart';
 
-class TabraHalatCard extends StatelessWidget {
-   TabraHalatCard({super.key , required this.bookfun});
-  Function()? bookfun ;
+class TabraHalatCard extends StatefulWidget {
+  TabraHalatCard(
+      {super.key,
+      required this.describtion,
+      required this.bookfun,
+      required this.amount,
+      required this.caseId,
+      required this.total,
+      required this.charityId,
+      required this.title});
+  Function()? bookfun;
+  String title;
+  String describtion;
+  String caseId;
+  String charityId;
+  String amount;
+  String total;
+
+  @override
+  State<TabraHalatCard> createState() => _TabraHalatCardState();
+}
+
+class _TabraHalatCardState extends State<TabraHalatCard> {
+  String mainTypePayment = "onlineCard";
 
   @override
   Widget build(BuildContext context) {
+    String? current = "100";
+    String? remain =
+        (double.parse(widget.total) - double.parse(current)).toString();
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     return Card(
@@ -32,14 +58,14 @@ class TabraHalatCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(25),
                 child: Image.asset(
-                  "assets/images/ملابس.jpg",
+                  "assets/images/children.png",
                   fit: BoxFit.fill,
                   height: height / 9,
                 ),
               ),
             ),
             Text(
-              "تبرع بالملابس",
+              widget.title,
               style: TextStyle(
                 color: Colors.black,
                 fontSize: width / 17,
@@ -52,7 +78,7 @@ class TabraHalatCard extends StatelessWidget {
               maxLines: 3,
               softWrap: true,
               overflow: TextOverflow.ellipsis,
-              "وفرلهم احتياجهم من الملابس لانهم بحاله صعبه وتحتاج الي مساعدتك",
+              widget.describtion,
               style: TextStyle(
                 color: Colors.black,
                 fontSize: width / 30,
@@ -75,9 +101,9 @@ class TabraHalatCard extends StatelessWidget {
                   Slider(
                     onChanged: (value) {},
                     label: "المبلغ",
-                    value: 65,
+                    value: double.parse(current),
                     min: 0,
-                    max: 100,
+                    max: double.parse(widget.total),
                     activeColor: Colors.blueGrey[900],
                     inactiveColor: Colors.grey[500],
                     thumbColor: Colors.blueGrey[900],
@@ -88,14 +114,14 @@ class TabraHalatCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "EGP 50,000 ",
+                          widget.total,
                           style: TextStyle(
                             fontSize: width / 45,
                             color: Colors.grey[600],
                           ),
                         ),
                         Text(
-                          "EGP 35,000 ",
+                          remain,
                           style: TextStyle(
                             fontSize: width / 45,
                             color: Colors.grey[600],
@@ -136,7 +162,7 @@ class TabraHalatCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  onPressed:bookfun,
+                  onPressed: widget.bookfun,
                   style: ButtonStyle(
                       backgroundColor: WidgetStateProperty.all(
                           const Color.fromARGB(255, 244, 243, 243))),
@@ -144,9 +170,41 @@ class TabraHalatCard extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).push(
+                    try {
+                      DioHelper.PostTransaction(
+                              amount: widget.amount,
+                              caseid: widget.caseId,
+                              charityid: widget.charityId,
+                              title: widget.title)
+                          .then((val) async {
+                        if (val != null) {
+                          print(val.data["url"]);
+                          if (await launchUrl(Uri.parse(val.data["url"]))) {
+                            await launchUrl(
+                              Uri.parse(val.data["url"]),
+                              mode: LaunchMode.inAppBrowserView,
+                            ).then((val) {});
+                            setState(() {
+                              current = (double.parse(current!) +
+                                      double.parse(widget.amount))
+                                  .toString();
+                              remain = (double.parse(widget.total) -
+                                      double.parse(widget.amount))
+                                  .toString();
+                            });
+                          } else {
+                            print("can not lanch");
+                          }
+                        } else {
+                          print("error");
+                        }
+                      });
+                    } catch (e) {
+                      print(e);
+                    }
+                    /*  Navigator.of(context).push(
                       MaterialPageRoute(builder: (context) => Mostamal()),
-                    );
+                    );*/
                   },
                   style: ButtonStyle(
                       backgroundColor: WidgetStateProperty.all(

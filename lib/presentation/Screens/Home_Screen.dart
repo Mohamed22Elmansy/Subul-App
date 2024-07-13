@@ -1,9 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation/businessLogic/cubit/cubit/cubit/booked_cases_cubit.dart';
 import 'package:graduation/presentation/Theme/app_theme.dart';
 import 'package:graduation/presentation/Theme/bloc/theme_bloc.dart';
+import 'package:graduation/presentation/Widgets/AllCases.dart';
 import 'package:graduation/presentation/Widgets/BottomSheetWidget.dart';
 import 'package:graduation/presentation/Widgets/SearchBar.dart';
 import 'package:graduation/presentation/Widgets/TabraHalatCard.dart';
@@ -70,6 +70,10 @@ class HomeScreen extends StatelessWidget {
           SizedBox(
             height: height / 70,
           ),
+          /* SizedBox(
+            height: height / 2,
+            child: AllCasesWidget(),
+          ),*/
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
@@ -77,6 +81,12 @@ class HomeScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TabraHalatCard(
+                    total: "4500",
+                    amount: "400",
+                    caseId: "66918ce04c9188e489a8211f",
+                    charityId: "6692b31dac979c0615a9970e",
+                    describtion: "طفل يتيم يحتاج إلى كفالة شهرية",
+                    title: "طفل يتيم",
                     bookfun: () {
                       BlocProvider.of<BookedCasesCubit>(context)
                           .addCase(title: "ملابس مستعمله", sallary: 1500);
@@ -86,6 +96,12 @@ class HomeScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TabraHalatCard(
+                    total: "2580",
+                    amount: "3500",
+                    caseId: "66918df64c9188e489a82126",
+                    charityId: "6692b31dac979c0615a9970e",
+                    describtion: "طفلة يتيمة تحتاج إلى دواء",
+                    title: "طفلة يتيمة",
                     bookfun: () {
                       BlocProvider.of<BookedCasesCubit>(context)
                           .addCase(title: "بوتاجازات مستعمله", sallary: 2000);
@@ -95,6 +111,72 @@ class HomeScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TabraHalatCard(
+                    total: "3000",
+                    amount: "250",
+                    caseId: "66918cd84c9188e489a82103",
+                    charityId: "6692b31dac979c0615a9970e",
+                    describtion: "طفل يتيم يحتاج إلى كفالة شهرية",
+                    title: "طفل يتيم",
+                    bookfun: () {
+                      BlocProvider.of<BookedCasesCubit>(context)
+                          .addCase(title: "ثلاجات مستعمله", sallary: 3500);
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TabraHalatCard(
+                    total: "4200",
+                    amount: "100",
+                    caseId: "66918cdf4c9188e489a82118",
+                    charityId: "6692b31dac979c0615a9970e",
+                    describtion: "طفل يتيم يحتاج إلى كفالة شهرية",
+                    title: "طفل يتيم",
+                    bookfun: () {
+                      BlocProvider.of<BookedCasesCubit>(context)
+                          .addCase(title: "ثلاجات مستعمله", sallary: 3500);
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TabraHalatCard(
+                    total: "4500",
+                    amount: "500",
+                    caseId: "66918cda4c9188e489a8210a",
+                    charityId: "6692b31dac979c0615a9970e",
+                    describtion: "طفل يتيم يحتاج إلى كفالة شهرية",
+                    title: "طفل يتيم",
+                    bookfun: () {
+                      BlocProvider.of<BookedCasesCubit>(context)
+                          .addCase(title: "ثلاجات مستعمله", sallary: 3500);
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TabraHalatCard(
+                    total: "5000",
+                    amount: "500",
+                    caseId: "66918cda4c9188e489a8210a",
+                    charityId: "6692b31dac979c0615a9970e",
+                    describtion: "طفل يتيم يحتاج إلى كفالة شهرية",
+                    title: "طفل يتيم",
+                    bookfun: () {
+                      BlocProvider.of<BookedCasesCubit>(context)
+                          .addCase(title: "ثلاجات مستعمله", sallary: 3500);
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TabraHalatCard(
+                    total: "2500",
+                    amount: "550",
+                    caseId: "66918cda4c9188e489a8210a",
+                    charityId: "6692b31dac979c0615a9970e",
+                    describtion: "طفل يتيم يحتاج إلى كفالة شهرية",
+                    title: "طفل يتيم",
                     bookfun: () {
                       BlocProvider.of<BookedCasesCubit>(context)
                           .addCase(title: "ثلاجات مستعمله", sallary: 3500);

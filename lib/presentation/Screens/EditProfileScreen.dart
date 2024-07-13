@@ -156,8 +156,6 @@ class EditProfile extends StatelessWidget {
                             if (formKey.currentState!.validate()) {
                               BlocProvider.of<EditProfileCubit>(context)
                                   .EditProfile();
-                              BlocProvider.of<UserProfileCubit>(context)
-                                  .checkUser();
                             }
                           },
                           style: ElevatedButton.styleFrom(

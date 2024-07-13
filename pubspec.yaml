@@ -48,6 +48,7 @@ dependencies:
   curved_navigation_bar:
   path:
   readmore:
+  url_launcher:
   intl:
   flutter_launcher_icons:
 

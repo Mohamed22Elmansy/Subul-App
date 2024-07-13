@@ -48,15 +48,45 @@ class DioHelper {
     }
   }
 
+  static Future<Response?> PostTransaction({
+    required String amount,
+    required String caseid,
+    required String charityid,
+    required String title,
+  }) async {
+    try {
+      return await dio?.post(
+          'https://subul.onrender.com/api/payment/addTransaction/paymob/onlinecard',
+          data: {
+            "caseId": caseid,
+            "charityId": charityid,
+            "caseTitle": title,
+            "amount": amount,
+            "mainTypePayment": "onlineCard",
+          },
+          options: Options(
+            headers: {
+              'Cookie':
+                  'jwt=${UserProfileCubit.token}', // Add the JWT to the Cookie header
+            },
+          ));
+    } on DioException catch (e) {
+      String errorMessage = 'Unknown error';
+      if (e.response != null) {
+        errorMessage = 'Error: ${e.response!.statusCode} ${e.response!.data}';
+      } else {
+        errorMessage = 'Error: ${e.message}';
+      }
+      print(errorMessage);
+    }
+  }
+
   static Future<Response?> PutData({
     required Map<String, dynamic> postdata,
     required String url,
     required String token,
   }) async {
     try {
-      print(UserProfileCubit.token);
-
-      print(postdata.toString());
       return await dio?.put(url,
           data: postdata,
           options: Options(

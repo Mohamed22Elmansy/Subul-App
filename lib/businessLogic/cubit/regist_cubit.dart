@@ -61,18 +61,18 @@ class RegistCubit extends Cubit<RegistState> {
       ).then((value) {
         if (value != null) {
           try {
-            
-          emit(RegistSucsses());
-          CacheHelper.cacheUserLogin(true, "user");
+            emit(RegistSucsses());
+            CacheHelper.cacheUserLogin(true, "user");
+            print(value.data);
 
-          ProfileData userData = ProfileData.fromjson(value.data);
-          CacheHelper.storeUserData(userData, password).then((value) =>
-              BlocProvider.of<UserProfileCubit>(context).checkUser());
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-              builder: (context) => NavBarScreen(),
-            ),
-          );
+            ProfileData userData = ProfileData.fromjson(value.data);
+            CacheHelper.storeUserData(userData, password).then((value) =>
+                BlocProvider.of<UserProfileCubit>(context).checkUser());
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => NavBarScreen(),
+              ),
+            );
           } catch (e) {
             print(e);
           }

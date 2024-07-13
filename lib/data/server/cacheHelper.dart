@@ -53,6 +53,32 @@ class CacheHelper {
     }
   }
 
+  static Future<void> StoreCases(List<Map<String, dynamic>> data) async {
+    final sharedPreferences = await SharedPreferences.getInstance();
+    try {
+      String encodedData = jsonEncode(data);
+      await sharedPreferences.setString("cases", encodedData);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  static Future<List<Map<String, dynamic>>> GetCases() async {
+    final sharedPreferences = await SharedPreferences.getInstance();
+    try {
+      String? encodedData = sharedPreferences.getString('cases');
+      if (encodedData != null) {
+        List<Map<String, dynamic>> data =
+            List<Map<String, dynamic>>.from(jsonDecode(encodedData));
+        return data;
+      }
+      return [];
+    } catch (e) {
+      print(e);
+    }
+    return [];
+  }
+
   static Future<List<Map<String, dynamic>>> GetBookedCase() async {
     final sharedPreferences = await SharedPreferences.getInstance();
     try {
@@ -100,7 +126,7 @@ class CacheHelper {
     } catch (e) {
       print(e);
     }
-    return"";
+    return "";
   }
 
   static Future<void> storeCharityData(
@@ -124,22 +150,25 @@ class CacheHelper {
 
   static Future<void> storeUserData(
       ProfileData profileData, String password) async {
-    final sharedPreferences = await SharedPreferences.getInstance();
     try {
-      sharedPreferences.setString(
+      final sharedPreferences = await SharedPreferences.getInstance();
+      await sharedPreferences.setString(
           "User First Name", profileData.user!.name.firstName);
-      sharedPreferences.setString("Token", profileData.token!);
+      await sharedPreferences.setString(
+          "Token", profileData.token == null ? "" : profileData.token!);
 
-      sharedPreferences.setString(
+      await sharedPreferences.setString(
           "User Second Name", profileData.user!.name.lastName);
-      sharedPreferences.setString("User Phone Number", profileData.user!.phone);
-      sharedPreferences.setString(
+      await sharedPreferences.setString(
+          "User Phone Number", profileData.user!.phone);
+      await sharedPreferences.setString(
           "User Location", profileData.user!.userLocation.governorate);
 
-      sharedPreferences.setString("User Email", profileData.user!.email);
-      sharedPreferences.setBool(
+      await sharedPreferences.setString("User Email", profileData.user!.email);
+
+      await sharedPreferences.setBool(
           "Is Verified", profileData.user!.emailVerification.isVerified);
-      sharedPreferences.setString("password", password);
+      await sharedPreferences.setString("password", password);
     } catch (e) {
       print(e);
     }

@@ -48,6 +48,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
           .then((val) async {
         if (val != null) {
           buttonLable = "تعديل";
+          print("edited");
           emit(EditProfileSuccess());
           final sharedPreferences = await SharedPreferences.getInstance();
           sharedPreferences.setString("User First Name", nameController!.text);
